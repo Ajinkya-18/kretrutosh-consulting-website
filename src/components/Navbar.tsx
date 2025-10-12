@@ -9,11 +9,10 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Videos", path: "/#videos" },
-    { name: "Blog", path: "/#blog" },
-    { name: "Assessments", path: "/#assessments" },
-    { name: "Case Studies", path: "/#case-studies" },
-    { name: "Testimonials", path: "/#testimonials" },
+    { name: "Videos", path: "/videos" },
+    { name: "Blogs", path: "/blogs" },
+    { name: "Assessments", path: "/assessments" },
+    { name: "Case Studies", path: "/case-studies" },
   ];
 
   const scrollToSection = (hash: string) => {
@@ -31,25 +30,19 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            YourBrand
+            KretruTosh Consulting
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.path}
-                onClick={(e) => {
-                  if (item.path.includes("#")) {
-                    e.preventDefault();
-                    scrollToSection(item.path.split("#")[1] ? `#${item.path.split("#")[1]}` : "");
-                  }
-                }}
+                to={item.path}
                 className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <Button variant="hero" size="sm">
               Get Started
@@ -67,20 +60,14 @@ const Navbar = () => {
           <div className="md:hidden pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.path}
-                  onClick={(e) => {
-                    if (item.path.includes("#")) {
-                      e.preventDefault();
-                      scrollToSection(item.path.split("#")[1] ? `#${item.path.split("#")[1]}` : "");
-                    }
-                    setIsOpen(false);
-                  }}
+                  to={item.path}
+                  onClick={() => setIsOpen(false)}
                   className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <Button variant="hero" size="sm" className="w-full">
                 Get Started
