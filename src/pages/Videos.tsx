@@ -15,39 +15,27 @@ const Videos = () => {
   const videos: Video[] = [
     {
       id: "1",
-      title: "Introduction to Our Services",
-      description: "Learn about how we help businesses achieve their goals",
-      youtubeId: "dQw4w9WgXcQ",
+      title: "Frictionless Customer Journeys",
+      description: "Breaking down barriers in customer experience",
+      youtubeId: "nJiPQu4kwkw", // Placeholder - Replace with actual theXTPodcast video ID
     },
     {
       id: "2",
-      title: "Client Success Stories",
-      description: "Real results from organizations we've worked with",
-      youtubeId: "dQw4w9WgXcQ",
+      title: "Customer Experience Excellence",
+      description: "Transformative strategies for exceptional CX",
+      youtubeId: "U3s8DG8lODQ", // Placeholder - Replace with actual theXTPodcast video ID
     },
     {
       id: "3",
-      title: "Expert Insights & Tips",
-      description: "Practical advice for business transformation",
-      youtubeId: "dQw4w9WgXcQ",
+      title: "Strategic Customer Advantage",
+      description: "Transform CX into a competitive edge",
+      youtubeId: "5O7dzKNy1AU", // Placeholder - Replace with actual theXTPodcast video ID
     },
     {
       id: "4",
-      title: "Digital Transformation Guide",
-      description: "Step-by-step approach to modernizing your business",
-      youtubeId: "dQw4w9WgXcQ",
-    },
-    {
-      id: "5",
-      title: "Leadership Best Practices",
-      description: "Key strategies for effective business leadership",
-      youtubeId: "dQw4w9WgXcQ",
-    },
-    {
-      id: "6",
-      title: "Innovation Workshop Highlights",
-      description: "Highlights from our recent innovation workshop",
-      youtubeId: "dQw4w9WgXcQ",
+      title: "The Future of Customer Experience",
+      description: "Creating incredible customer experiences",
+      youtubeId: "MPcMX6tjR2o", // Placeholder - Replace with actual theXTPodcast video ID
     },
   ];
 
@@ -67,7 +55,7 @@ const Videos = () => {
               <Button 
                 variant="hero" 
                 size="lg"
-                onClick={() => window.open('https://youtube.com/@yourchannel', '_blank')}
+                onClick={() => window.open('https://www.youtube.com/@theXTPodcast', '_blank')}
               >
                 <Youtube className="mr-2 h-5 w-5" />
                 Visit Our YouTube Channel

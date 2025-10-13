@@ -12,21 +12,21 @@ const VideoShowcase = () => {
   const videos: Video[] = [
     {
       id: "1",
-      title: "Introduction to Our Services",
-      description: "Learn about how we help businesses achieve their goals",
-      youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube video IDs
+      title: "Frictionless Customer Journeys",
+      description: "Breaking down barriers in customer experience",
+      youtubeId: "nJiPQu4kwkw", // Placeholder - Replace with actual theXTPodcast video ID
     },
     {
       id: "2",
-      title: "Client Success Stories",
-      description: "Real results from organizations we've worked with",
-      youtubeId: "dQw4w9WgXcQ",
+      title: "Customer Experience Excellence",
+      description: "Transformative strategies for exceptional CX",
+      youtubeId: "U3s8DG8lODQ", // Placeholder - Replace with actual theXTPodcast video ID
     },
     {
       id: "3",
-      title: "Expert Insights & Tips",
-      description: "Practical advice for business transformation",
-      youtubeId: "dQw4w9WgXcQ",
+      title: "Strategic Customer Advantage",
+      description: "Transform CX into a competitive edge",
+      youtubeId: "5O7dzKNy1AU", // Placeholder - Replace with actual theXTPodcast video ID
     },
   ];
 
