@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, BookOpen } from "lucide-react";
+import { ExternalLink, BookOpen, Linkedin } from "lucide-react";
 
 interface BlogPost {
   id: string;
@@ -42,9 +42,23 @@ const BlogSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Latest Insights
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
             Expert perspectives and thought leadership on Medium
           </p>
+          <Button 
+            variant="hero" 
+            size="lg"
+            asChild
+          >
+            <a 
+              href="https://www.linkedin.com/in/ashutosh-karandikar-ccxp/recent-activity/articles/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Linkedin className="mr-2 h-5 w-5" />
+              View All Articles on LinkedIn
+            </a>
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

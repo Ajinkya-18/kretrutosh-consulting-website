@@ -1,27 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Videos", path: "/videos" },
-    { name: "Blogs", path: "/blogs" },
-    { name: "Assessments", path: "/assessments" },
-    { name: "Case Studies", path: "/case-studies" },
+    { name: "Home", hash: "#hero" },
+    { name: "Videos", hash: "#videos" },
+    { name: "Blogs", hash: "#blog" },
+    { name: "Assessments", hash: "#assessments" },
+    { name: "Case Studies", hash: "#case-studies" },
   ];
 
   const scrollToSection = (hash: string) => {
     setIsOpen(false);
-    if (hash) {
-      setTimeout(() => {
-        const element = document.querySelector(hash);
-        element?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+    if (hash === "#hero") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (hash) {
+      const element = document.querySelector(hash);
+      element?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -29,22 +27,29 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <button 
+            onClick={() => scrollToSection("#hero")} 
+            className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+          >
             KretruTosh Consulting
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <Link
+              <button
                 key={item.name}
-                to={item.path}
+                onClick={() => scrollToSection(item.hash)}
                 className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
               >
                 {item.name}
-              </Link>
+              </button>
             ))}
-            <Button variant="hero" size="sm">
+            <Button 
+              variant="hero" 
+              size="sm"
+              onClick={() => scrollToSection("#contact")}
+            >
               Get Started
             </Button>
           </div>
@@ -60,16 +65,20 @@ const Navbar = () => {
           <div className="md:hidden pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <Link
+                <button
                   key={item.name}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                  onClick={() => scrollToSection(item.hash)}
+                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2 text-left"
                 >
                   {item.name}
-                </Link>
+                </button>
               ))}
-              <Button variant="hero" size="sm" className="w-full">
+              <Button 
+                variant="hero" 
+                size="sm" 
+                className="w-full"
+                onClick={() => scrollToSection("#contact")}
+              >
                 Get Started
               </Button>
             </div>

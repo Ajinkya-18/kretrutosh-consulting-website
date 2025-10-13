@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Youtube } from "lucide-react";
 
 interface Video {
   id: string;
@@ -37,9 +38,23 @@ const VideoShowcase = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Video Library
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
             Explore our collection of insights, tutorials, and success stories
           </p>
+          <Button 
+            variant="hero" 
+            size="lg"
+            asChild
+          >
+            <a 
+              href="https://www.youtube.com/@theXTPodcast" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Youtube className="mr-2 h-5 w-5" />
+              Visit Our YouTube Channel
+            </a>
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
