@@ -55,10 +55,16 @@ const Videos = () => {
               <Button 
                 variant="hero" 
                 size="lg"
-                onClick={() => window.open('https://www.youtube.com/@theXTPodcast', '_blank')}
+                asChild
               >
-                <Youtube className="mr-2 h-5 w-5" />
-                Visit Our YouTube Channel
+                <a 
+                  href="https://www.youtube.com/@theXTPodcast" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Youtube className="mr-2 h-5 w-5" />
+                  Visit Our YouTube Channel
+                </a>
               </Button>
             </div>
 
