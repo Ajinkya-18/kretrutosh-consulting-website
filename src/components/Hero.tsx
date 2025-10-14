@@ -1,42 +1,65 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
-import heroBackground from "@/assets/hero-background.jpg";
+import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: `url(${heroBackground})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/70 to-accent/80" />
-      </div>
+  const navigate = useNavigate();
 
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 text-center">
-        <div className="max-w-4xl mx-auto animate-fade-in-up">
-          <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
-            Transform Your Business with Expert Solutions
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-background">
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
+      
+      <div className="container mx-auto px-4 py-32 relative z-10">
+        <div className="max-w-4xl mx-auto text-center animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-primary-foreground">
+            GTM Velocity Transformation
           </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 leading-relaxed">
-            Discover insights, assessments, and proven strategies that drive real results for your organization
+          <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90 leading-relaxed">
+            Maximize customer retention, drive expansion, and win referrals — by optimizing sales, customer success, digital platforms, and team culture
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" className="text-lg px-8 py-6 shadow-xl">
-              Explore Our Services
-              <ArrowRight className="ml-2 h-5 w-5" />
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <div className="text-center px-6 py-3 bg-accent/20 rounded-lg backdrop-blur-sm">
+              <p className="text-3xl font-bold text-primary-foreground">2-5x</p>
+              <p className="text-sm text-primary-foreground/80">Sales Velocity</p>
+            </div>
+            <div className="text-center px-6 py-3 bg-accent/20 rounded-lg backdrop-blur-sm">
+              <p className="text-3xl font-bold text-primary-foreground">+12-25%</p>
+              <p className="text-sm text-primary-foreground/80">Retention</p>
+            </div>
+            <div className="text-center px-6 py-3 bg-accent/20 rounded-lg backdrop-blur-sm">
+              <p className="text-3xl font-bold text-primary-foreground">+20-40%</p>
+              <p className="text-sm text-primary-foreground/80">Revenue Expansion</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              onClick={scrollToContact}
+              className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg group"
+            >
+              Get Started
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-card/20 backdrop-blur-sm border-primary-foreground/30 text-primary-foreground hover:bg-card/30">
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => navigate("/about")}
+              className="text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+            >
+              Learn More
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
