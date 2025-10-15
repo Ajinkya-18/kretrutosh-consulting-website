@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+
+  const handleNavClick = (path: string) => {
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer className="bg-card border-t border-border">
@@ -31,22 +38,22 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/" onClick={() => handleNavClick('/')} className="text-muted-foreground hover:text-primary transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/videos" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/videos" onClick={() => handleNavClick('/videos')} className="text-muted-foreground hover:text-primary transition-colors">
                   Videos
                 </Link>
               </li>
               <li>
-                <Link to="/blogs" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/blogs" onClick={() => handleNavClick('/blogs')} className="text-muted-foreground hover:text-primary transition-colors">
                   Blogs
                 </Link>
               </li>
               <li>
-                <Link to="/assessments/cx-maturity" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/assessments/cx-maturity" onClick={() => handleNavClick('/assessments/cx-maturity')} className="text-muted-foreground hover:text-primary transition-colors">
                   Assessments
                 </Link>
               </li>
@@ -57,12 +64,12 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/about" onClick={() => handleNavClick('/about')} className="text-muted-foreground hover:text-primary transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/services/pre-sales" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services/pre-sales" onClick={() => handleNavClick('/services/pre-sales')} className="text-muted-foreground hover:text-primary transition-colors">
                   Services
                 </Link>
               </li>
@@ -72,7 +79,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <Link to="/case-studies" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/case-studies" onClick={() => handleNavClick('/case-studies')} className="text-muted-foreground hover:text-primary transition-colors">
                   Case Studies
                 </Link>
               </li>
