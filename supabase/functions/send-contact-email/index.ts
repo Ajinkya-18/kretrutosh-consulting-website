@@ -35,7 +35,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: 'KretruTosh Consulting <onboarding@resend.dev>',
-        to: ['consult.ashutosh@kretru.com'],
+        to: ['ajinkya.tamhankar18@gmail.com'],
         reply_to: email,
         subject: `Contact Form: ${subject}`,
         html: `
