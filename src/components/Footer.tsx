@@ -10,23 +10,19 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
-              YourBrand
+              KretruTosh Consulting
             </h3>
             <p className="text-muted-foreground mb-4">
               Empowering businesses with expert solutions, insights, and proven strategies for sustainable growth.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all">
+              <a 
+                href="https://www.linkedin.com/in/ashutosh-karandikar-ccxp/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
+              >
                 <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all">
-                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -35,24 +31,24 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/#videos" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/videos" className="text-muted-foreground hover:text-primary transition-colors">
                   Videos
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#blog" className="text-muted-foreground hover:text-primary transition-colors">
-                  Blog
-                </a>
+                <Link to="/blogs" className="text-muted-foreground hover:text-primary transition-colors">
+                  Blogs
+                </Link>
               </li>
               <li>
-                <a href="/#assessments" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/assessments/cx-maturity" className="text-muted-foreground hover:text-primary transition-colors">
                   Assessments
-                </a>
-              </li>
-              <li>
-                <a href="/#case-studies" className="text-muted-foreground hover:text-primary transition-colors">
-                  Case Studies
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -61,14 +57,14 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#testimonials" className="text-muted-foreground hover:text-primary transition-colors">
-                  Testimonials
-                </a>
+                <Link to="/services/pre-sales" className="text-muted-foreground hover:text-primary transition-colors">
+                  Services
+                </Link>
               </li>
               <li>
                 <a href="/#contact" className="text-muted-foreground hover:text-primary transition-colors">
@@ -76,9 +72,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  Privacy Policy
-                </a>
+                <Link to="/case-studies" className="text-muted-foreground hover:text-primary transition-colors">
+                  Case Studies
+                </Link>
               </li>
             </ul>
           </div>
@@ -103,7 +99,7 @@ const Footer = () => {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {currentYear} YourBrand. All rights reserved.
+            © {currentYear} KretruTosh Consulting. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors">

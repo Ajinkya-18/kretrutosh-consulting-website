@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -20,12 +21,21 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
       toast.success("Thank you! We'll get back to you soon.");
       setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -121,8 +131,12 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Email</h3>
-                    <p className="text-muted-foreground">contact@yourbrand.com</p>
-                    <p className="text-muted-foreground">support@yourbrand.com</p>
+                    <a href="mailto:karandikar.ashutosh@gmail.com" className="text-muted-foreground hover:text-primary transition-colors block">
+                      karandikar.ashutosh@gmail.com
+                    </a>
+                    <a href="mailto:consult.ashutosh@kretru.com" className="text-muted-foreground hover:text-primary transition-colors block">
+                      consult.ashutosh@kretru.com
+                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -136,8 +150,9 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Phone</h3>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                    <p className="text-muted-foreground">Mon-Fri, 9am-6pm EST</p>
+                    <a href="tel:+919591387838" className="text-muted-foreground hover:text-primary transition-colors">
+                      +91 9591387838
+                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -151,20 +166,10 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Office</h3>
-                    <p className="text-muted-foreground">123 Business Street</p>
-                    <p className="text-muted-foreground">Suite 100, City, State 12345</p>
+                    <p className="text-muted-foreground">Gujrati Society, Vile Parle</p>
+                    <p className="text-muted-foreground">Mumbai, Maharashtra 400057</p>
+                    <p className="text-muted-foreground">India</p>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border/50 shadow-lg bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardContent className="pt-6">
-                <h3 className="font-semibold text-lg mb-2">Business Hours</h3>
-                <div className="space-y-1 text-muted-foreground">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p>Saturday: 10:00 AM - 4:00 PM</p>
-                  <p>Sunday: Closed</p>
                 </div>
               </CardContent>
             </Card>
