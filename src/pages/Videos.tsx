@@ -43,13 +43,15 @@ const Videos = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5">
-          <div className="container mx-auto px-4">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
+          
+          <div className="container mx-auto px-4 py-20 relative z-10">
             <div className="text-center mb-12 animate-fade-in">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
                 Video Library
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-8">
                 Explore our collection of insights, tutorials, and success stories
               </p>
           <Button 
@@ -66,11 +68,17 @@ const Videos = () => {
               Visit Our YouTube Channel
             </a>
           </Button>
-          <p className="text-sm text-muted-foreground mt-4">
+          <p className="text-sm text-primary-foreground/70 mt-4">
             Note: To enable dynamic video loading, provide your YouTube API key
           </p>
             </div>
+          </div>
 
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {videos.map((video, index) => (
                 <Card 

@@ -36,6 +36,7 @@ const Navbar = () => {
   ];
 
   const thoughtLeadership = [
+    { name: "Book", path: "/book" },
     { name: "Blogs & Articles", path: "/blogs" },
     { name: "Videos", path: "/videos" },
   ];

@@ -26,8 +26,10 @@ const PreSales = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="py-20 bg-gradient-to-br from-primary via-primary-glow to-background">
-          <div className="container mx-auto px-4">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
+          
+          <div className="container mx-auto px-4 py-20 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary-foreground">
                 Pre Sales
@@ -37,6 +39,8 @@ const PreSales = () => {
               </p>
             </div>
           </div>
+
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </section>
 
         <section className="py-20">
