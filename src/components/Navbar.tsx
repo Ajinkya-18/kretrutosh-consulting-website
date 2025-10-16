@@ -16,6 +16,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const services = [
     { name: "Pre Sales", path: "/services/pre-sales" },
     { name: "Sales", path: "/services/sales" },
@@ -125,7 +130,7 @@ const Navbar = () => {
             </Link>
 
             <Button
-              onClick={() => navigate("/#contact")}
+              onClick={scrollToContact}
               className="bg-accent hover:bg-accent/90 text-accent-foreground"
             >
               Get Started
@@ -204,7 +209,7 @@ const Navbar = () => {
               <Button
                 onClick={() => {
                   setIsOpen(false);
-                  navigate("/#contact");
+                  scrollToContact();
                 }}
                 className="bg-accent hover:bg-accent/90 text-accent-foreground w-full"
               >

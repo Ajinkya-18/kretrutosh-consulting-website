@@ -11,7 +11,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-background">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
       
       <div className="container mx-auto px-4 py-32 relative z-10">
@@ -24,15 +24,15 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <div className="text-center px-6 py-3 bg-accent/20 rounded-lg backdrop-blur-sm">
+            <div className="text-center px-6 py-3 bg-orange-700/30 rounded-lg backdrop-blur-sm border border-orange-600/30">
               <p className="text-3xl font-bold text-primary-foreground">2-5x</p>
               <p className="text-sm text-primary-foreground/80">Sales Velocity</p>
             </div>
-            <div className="text-center px-6 py-3 bg-accent/20 rounded-lg backdrop-blur-sm">
+            <div className="text-center px-6 py-3 bg-orange-700/30 rounded-lg backdrop-blur-sm border border-orange-600/30">
               <p className="text-3xl font-bold text-primary-foreground">+12-25%</p>
               <p className="text-sm text-primary-foreground/80">Retention</p>
             </div>
-            <div className="text-center px-6 py-3 bg-accent/20 rounded-lg backdrop-blur-sm">
+            <div className="text-center px-6 py-3 bg-orange-700/30 rounded-lg backdrop-blur-sm border border-orange-600/30">
               <p className="text-3xl font-bold text-primary-foreground">+20-40%</p>
               <p className="text-sm text-primary-foreground/80">Revenue Expansion</p>
             </div>
