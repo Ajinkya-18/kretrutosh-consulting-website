@@ -44,11 +44,11 @@ const Index = () => {
         <Hero />
 
         {/* Services Overview */}
-        <section className="py-20 bg-muted/30">
+        <section className="py-24 bg-gradient-to-b from-muted/30 via-background to-muted/20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <div className="text-center mb-16 animate-fade-in space-y-4">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">Our Services</h2>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light">
                 Comprehensive solutions to transform your business velocity
               </p>
             </div>
@@ -57,30 +57,32 @@ const Index = () => {
               {services.map((service, index) => (
                 <Card
                   key={service.path}
-                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-border/50"
+                  className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer border-border/60 bg-gradient-to-br from-card via-card to-muted/20 hover:border-accent/40 overflow-hidden relative"
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => navigate(service.path)}
                 >
-                  <CardHeader>
-                    <div className="mb-4 text-accent">{service.icon}</div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
-                    <CardDescription>{service.description}</CardDescription>
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:via-accent/3 group-hover:to-transparent transition-all duration-500" />
+                  <CardHeader className="relative">
+                    <div className="mb-4 text-accent group-hover:scale-110 transition-transform duration-500">{service.icon}</div>
+                    <CardTitle className="text-xl group-hover:text-accent transition-colors duration-300">{service.title}</CardTitle>
+                    <CardDescription className="leading-relaxed">{service.description}</CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <Button variant="ghost" className="group-hover:text-accent p-0">
+                  <CardContent className="relative">
+                    <Button variant="ghost" className="group-hover:text-accent p-0 font-semibold">
                       Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
                     </Button>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-16">
               <Button
                 size="lg"
+                variant="premium"
                 onClick={() => navigate("/services/culture-transformation")}
-                className="bg-accent hover:bg-accent/90"
+                className="shadow-xl hover:shadow-2xl"
               >
                 Explore Culture Transformation
                 <ArrowRight className="ml-2 h-5 w-5" />

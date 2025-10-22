@@ -42,7 +42,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-b border-border shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-xl border-b border-border/60 shadow-lg transition-all duration-300">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
@@ -53,7 +53,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-6">
             <Link
               to="/"
-              className="text-foreground hover:text-accent transition-colors duration-300 font-medium"
+              className="text-foreground hover:text-accent transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
             >
               Home
             </Link>
@@ -125,14 +125,15 @@ const Navbar = () => {
 
             <Link
               to="/about"
-              className="text-foreground hover:text-accent transition-colors duration-300 font-medium"
+              className="text-foreground hover:text-accent transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
             >
               About
             </Link>
 
             <Button
               onClick={scrollToContact}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              variant="premium"
+              className="shadow-lg hover:shadow-xl"
             >
               Get Started
             </Button>
@@ -212,7 +213,8 @@ const Navbar = () => {
                   setIsOpen(false);
                   scrollToContact();
                 }}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground w-full"
+                variant="premium"
+                className="w-full shadow-lg"
               >
                 Get Started
               </Button>
