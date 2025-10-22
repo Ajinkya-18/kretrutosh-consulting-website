@@ -43,7 +43,7 @@ const Videos = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
           
           <div className="container mx-auto px-4 py-20 relative z-10">
@@ -51,12 +51,13 @@ const Videos = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
                 Video Library
               </h1>
-              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-8">
+              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-8 animate-fade-in-up">
                 Explore our collection of insights, tutorials, and success stories
               </p>
           <Button 
             size="lg"
-            className="bg-accent hover:bg-accent/90"
+            variant="premium"
+            className="animate-scale-in"
             asChild
           >
             <a 
@@ -68,7 +69,7 @@ const Videos = () => {
               Visit Our YouTube Channel
             </a>
           </Button>
-          <p className="text-sm text-primary-foreground/70 mt-4">
+          <p className="text-sm text-primary-foreground/70 mt-4 animate-fade-in">
             Note: To enable dynamic video loading, provide your YouTube API key
           </p>
             </div>
@@ -83,7 +84,7 @@ const Videos = () => {
               {videos.map((video, index) => (
                 <Card 
                   key={video.id} 
-                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in border-border/50"
+                  className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in border-border/50"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader>

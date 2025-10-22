@@ -11,15 +11,15 @@ const Book = () => {
       <Navbar />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
           
           <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-center animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary-foreground">
                 Beyond Customer Satisfaction
               </h1>
-              <p className="text-xl md:text-2xl text-primary-foreground/90">
+              <p className="text-xl md:text-2xl text-primary-foreground/90 animate-fade-in-up">
                 Crafting Exceptional Customer Experiences in the Age of "Kretru"
               </p>
             </div>
@@ -34,19 +34,19 @@ const Book = () => {
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Book Cover */}
-                <div className="flex justify-center">
+                <div className="flex justify-center animate-fade-in">
                   <div className="relative group">
-                    <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent opacity-30 blur-xl group-hover:opacity-50 transition-opacity rounded-lg" />
+                    <div className="absolute -inset-4 bg-gradient-to-r from-accent to-accent-hover opacity-20 blur-xl group-hover:opacity-30 transition-all duration-300 rounded-lg" />
                     <img 
                       src={bookCover} 
                       alt="Beyond Customer Satisfaction Book Cover" 
-                      className="relative rounded-lg shadow-2xl w-full max-w-md"
+                      className="relative rounded-lg shadow-2xl w-full max-w-md transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                 </div>
 
                 {/* Book Details */}
-                <div className="space-y-6">
+                <div className="space-y-6 animate-fade-in-up">
                   <div>
                     <h2 className="text-3xl font-bold mb-4">About the Book</h2>
                     <p className="text-lg text-muted-foreground mb-6">

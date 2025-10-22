@@ -14,20 +14,20 @@ const About = () => {
       <Navbar />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
           
           <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-center animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary-foreground">
                 About Ashutosh Karandikar
               </h1>
-              <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
-                <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-lg backdrop-blur-sm">
+              <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-8 animate-fade-in-up">
+                <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-lg backdrop-blur-sm border border-accent/30 transition-all hover:bg-accent/30">
                   <Award className="h-5 w-5 text-accent" />
                   <span className="text-primary-foreground font-semibold">CCXP CERTIFIED</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-lg backdrop-blur-sm">
+                <div className="flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-lg backdrop-blur-sm border border-accent/30 transition-all hover:bg-accent/30">
                   <Briefcase className="h-5 w-5 text-accent" />
                   <span className="text-primary-foreground font-semibold">IIMB Customer Experience Professional</span>
                 </div>
@@ -46,7 +46,7 @@ const About = () => {
                 <h2 className="text-3xl font-bold mb-6">20+ Years of Global Consulting & Business Transformation Experience</h2>
                 
                 <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  <Card className="border-border/50">
+                  <Card className="border-border/50 animate-fade-in hover:shadow-lg transition-all hover:-translate-y-1" style={{ animationDelay: '0.1s' }}>
                     <CardHeader>
                       <CardTitle className="text-accent flex items-center gap-2">
                         <TrendingUp className="h-6 w-6" />
@@ -59,7 +59,7 @@ const About = () => {
                     </CardContent>
                   </Card>
                   
-                  <Card className="border-border/50">
+                  <Card className="border-border/50 animate-fade-in hover:shadow-lg transition-all hover:-translate-y-1" style={{ animationDelay: '0.2s' }}>
                     <CardHeader>
                       <CardTitle className="text-accent flex items-center gap-2">
                         <TrendingUp className="h-6 w-6" />
@@ -72,7 +72,7 @@ const About = () => {
                     </CardContent>
                   </Card>
                   
-                  <Card className="border-border/50">
+                  <Card className="border-border/50 animate-fade-in hover:shadow-lg transition-all hover:-translate-y-1" style={{ animationDelay: '0.3s' }}>
                     <CardHeader>
                       <CardTitle className="text-accent flex items-center gap-2">
                         <Award className="h-6 w-6" />

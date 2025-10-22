@@ -27,15 +27,15 @@ const Sales = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
           
           <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-center animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary-foreground">
                 Sales
               </h1>
-              <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8">
+              <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 animate-fade-in-up">
                 Accelerate acquisition, conversion, and predictable revenue growth
               </p>
             </div>
@@ -47,10 +47,10 @@ const Sales = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8">Key Outcomes</h2>
+              <h2 className="text-3xl font-bold mb-8 animate-fade-in">Key Outcomes</h2>
               <div className="grid md:grid-cols-3 gap-6 mb-12">
                 {outcomes.map((outcome, index) => (
-                  <Card key={index} className="border-accent/20">
+                  <Card key={index} className="border-accent/20 animate-fade-in hover:shadow-lg transition-all hover:-translate-y-1" style={{ animationDelay: `${index * 0.1}s` }}>
                     <CardHeader>
                       <CardTitle className="text-accent text-3xl">{outcome.metric}</CardTitle>
                     </CardHeader>
@@ -61,21 +61,21 @@ const Sales = () => {
                 ))}
               </div>
 
-              <h2 className="text-3xl font-bold mb-8">What We Offer</h2>
+              <h2 className="text-3xl font-bold mb-8 animate-fade-in">What We Offer</h2>
               <div className="space-y-4 mb-12">
                 {offerings.map((offering, index) => (
-                  <div key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
+                  <div key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg animate-fade-in hover:bg-muted/70 transition-all" style={{ animationDelay: `${index * 0.05}s` }}>
                     <CheckCircle2 className="h-6 w-6 text-accent mt-0.5 flex-shrink-0" />
                     <p className="text-lg">{offering}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="text-center">
+              <div className="text-center animate-fade-in">
                 <Button
                   size="lg"
                   onClick={() => navigate("/#contact")}
-                  className="bg-accent hover:bg-accent/90"
+                  variant="premium"
                 >
                   Get Started with Sales
                   <ArrowRight className="ml-2 h-5 w-5" />

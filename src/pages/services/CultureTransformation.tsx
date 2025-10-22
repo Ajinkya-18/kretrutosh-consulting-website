@@ -21,15 +21,15 @@ const CultureTransformation = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
           
           <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-center animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary-foreground">
                 Culture Transformation
               </h1>
-              <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8">
+              <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 animate-fade-in-up">
                 Build customer-centricity and vision-aligned mindset & behaviors into leadership and teams
               </p>
             </div>
@@ -41,51 +41,31 @@ const CultureTransformation = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="mb-12">
+              <div className="mb-12 animate-fade-in">
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Sustaining GTM Velocity by aligning people, values, and behaviors — ensuring every team acts with shared purpose and customer focus.
                 </p>
               </div>
 
-              <h2 className="text-3xl font-bold mb-8">Key Outcomes</h2>
+              <h2 className="text-3xl font-bold mb-8 animate-fade-in">Key Outcomes</h2>
               <div className="grid md:grid-cols-2 gap-4 mb-12">
                 {outcomes.map((outcome, index) => (
-                  <div key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
+                  <div key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg animate-fade-in hover:bg-muted/70 transition-all" style={{ animationDelay: `${index * 0.05}s` }}>
                     <CheckCircle2 className="h-6 w-6 text-accent mt-0.5 flex-shrink-0" />
                     <p className="text-lg">{outcome}</p>
                   </div>
                 ))}
               </div>
 
-              <Card className="mb-12 border-accent/20 bg-accent/5">
-                <CardHeader>
-                  <CardTitle className="text-2xl">Success Stories</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-bold mb-2 text-accent">SYMEGA</h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• 23% improvement in product innovation cycle time</li>
-                      <li>• 19% boost in employee engagement (+6pp in eNPS)</li>
-                      <li>• 13% reduction in internal conflicts</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2 text-accent">ACCELERATENEXT</h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• 17% reduction in early attrition (0–6 months)</li>
-                      <li>• 18% increase in cross-functional collaboration</li>
-                      <li>• 27% improvement in ownership and accountability</li>
-                    </ul>
-                  </div>
-                </CardContent>
+              <Card className="mb-12 border-accent/20 bg-accent/5 animate-fade-in hover:shadow-lg transition-all">
+...
               </Card>
 
-              <div className="text-center">
+              <div className="text-center animate-fade-in">
                 <Button
                   size="lg"
                   onClick={() => navigate("/#contact")}
-                  className="bg-accent hover:bg-accent/90"
+                  variant="premium"
                 >
                   Transform Your Culture
                   <ArrowRight className="ml-2 h-5 w-5" />

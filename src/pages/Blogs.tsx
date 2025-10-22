@@ -62,7 +62,7 @@ const Blogs = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black/90 via-primary/80 to-background/60">
+        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
           
           <div className="container mx-auto px-4 py-20 relative z-10">
@@ -70,7 +70,7 @@ const Blogs = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
                 Latest Insights
               </h1>
-              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
+              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto animate-fade-in-up">
                 Expert perspectives and thought leadership on Medium
               </p>
             </div>
@@ -85,7 +85,7 @@ const Blogs = () => {
               {blogPosts.map((post, index) => (
                 <Card 
                   key={post.id}
-                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in border-border/50"
+                  className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in border-border/50"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader>
