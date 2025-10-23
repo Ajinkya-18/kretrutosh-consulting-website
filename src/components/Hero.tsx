@@ -18,7 +18,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-32 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-tight tracking-tight">
-            GTM Velocity Transformation
+            KretruTosh Consulting
           </h1>
           <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto font-light">
             Maximize customer retention, drive expansion, and win referrals — by optimizing sales, customer success, digital platforms, and team culture
