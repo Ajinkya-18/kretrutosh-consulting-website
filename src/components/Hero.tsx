@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  const navigate = useNavigate();
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
@@ -11,7 +9,16 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-primary/90 to-primary/70">
+    // --- FIX #6: Background Image Added ---
+    <section 
+      id="hero" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
+      style={{ backgroundImage: "url('/hero-background.jpg')" }}
+    >
+      {/* Dark overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-black/60" />
+
+      {/* Grid overlay (kept for texture) */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.07]" />
       <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
       
@@ -39,26 +46,9 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-5 justify-center pt-4">
-            <Button
-              size="lg"
-              onClick={scrollToContact}
-              variant="premium"
-              className="text-lg group shadow-2xl hover:shadow-accent/30"
-            >
-              Get Started
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => navigate("/about")}
-              /*className="text-lg border-2 border-white/40 text-foreground bg-white/95 hover:bg-white hover:text-foreground hover:border-white hover:shadow-xl" */
-              className="text-lg border-2 border-white/80 text-foreground bg-white/95 hover:bg-white hover:text-foreground hover:border-white hover:shadow-xl backdrop-blur-sm"
-            >
-              Learn More
-            </Button>
-          </div>
+          {/* --- FIX #2: Redundant Button Div Removed --- */}
+          {/* The div containing "Get Started" and "Learn More" was here */}
+
         </div>
       </div>
 

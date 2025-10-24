@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useLocation
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,25 +15,20 @@ import logo from "@/assets/kretrutosh-logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Get current location
+
+  // This logic is correct
+  const handleNavClick = (path: string) => {
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // For new pages, the <Link> component handles navigation
+  };
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
     contactSection?.scrollIntoView({ behavior: "smooth" });
   };
-
-  const services = [
-    { name: "Pre Sales", path: "/services/pre-sales" },
-    { name: "Sales", path: "/services/sales" },
-    { name: "Post Sales", path: "/services/post-sales" },
-    { name: "Digital Enablement", path: "/services/digital-enablement" },
-    { name: "Culture Transformation", path: "/services/culture-transformation" },
-  ];
-
-  const assessments = [
-    { name: "CX Maturity Assessment", path: "/assessments/cx-maturity" },
-    { name: "CS Maturity Assessment", path: "/assessments/cs-maturity" },
-    { name: "Culture Maturity Assessment", path: "/assessments/culture-maturity" },
-  ];
 
   const thoughtLeadership = [
     { name: "Book", path: "/book" },
@@ -45,18 +40,18 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-xl border-b border-border/60 shadow-lg transition-all duration-300">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          {/* --- FIX: onClick moved from <Link> to the parent anchor tag --- */}
+          <Link to="/" onClick={() => handleNavClick('/')} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img src={logo} alt="KretruTosh Consulting" className="h-12" />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
-            <Link
-              to="/"
-              className="text-foreground hover:text-accent transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-            >
-              Home
-            </Link>
+            
+            {/* --- FIX: onClick moved from <Link> to parent <Button> --- */}
+            <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/')}>
+              <Link to="/">Home</Link>
+            </Button>
 
             <NavigationMenu>
               <NavigationMenuList>
@@ -68,7 +63,8 @@ const Navbar = () => {
                     <ul className="grid w-48 gap-2 p-4 bg-popover">
                       {thoughtLeadership.map((item) => (
                         <li key={item.path}>
-                          <NavigationMenuLink asChild>
+                          {/* --- FIX: onClick moved from <Link> to parent <NavigationMenuLink> --- */}
+                          <NavigationMenuLink asChild onClick={() => handleNavClick(item.path)}>
                             <Link
                               to={item.path}
                               className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -81,65 +77,33 @@ const Navbar = () => {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-foreground hover:text-accent">
-                    Services
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-64 gap-2 p-4 bg-popover">
-                      {services.map((item) => (
-                        <li key={item.path}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              to={item.path}
-                              className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                            >
-                              {item.name}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                      <li className="border-t border-border mt-2 pt-2">
-                        <p className="text-sm font-semibold text-muted-foreground px-3 py-1">
-                          Assessments
-                        </p>
-                      </li>
-                      {assessments.map((item) => (
-                        <li key={item.path}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              to={item.path}
-                              className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                            >
-                              {item.name}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
+                  <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/services')}>
+                    <Link to="/services">Services</Link>
+                  </Button>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/assessments')}>
+                    <Link to="/assessments">Assessments</Link>
+                  </Button>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/case-studies')}>
+                    <Link to="/case-studies">Case Studies</Link>
+                  </Button>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
 
-            <Link
-              to="/about"
-              className="text-foreground hover:text-accent transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-            >
-              About
-            </Link>
+            <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/about')}>
+              <Link to="/about">About</Link>
+            </Button>
 
-            <Button
-              onClick={scrollToContact}
-              variant="premium"
-              className="shadow-lg hover:shadow-xl"
-            >
+            <Button onClick={scrollToContact} variant="premium" className="shadow-lg hover:shadow-xl">
               Get Started
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2">
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -151,68 +115,32 @@ const Navbar = () => {
             <div className="flex flex-col gap-4">
               <Link
                 to="/"
-                onClick={() => setIsOpen(false)}
+                onClick={() => { setIsOpen(false); handleNavClick('/'); }}
                 className="text-foreground hover:text-accent transition-colors font-medium py-2"
               >
                 Home
               </Link>
               
               <div>
-                <p className="text-sm font-semibold text-muted-foreground px-2 py-1">
-                  Thought Leadership
-                </p>
+                <p className="text-sm font-semibold text-muted-foreground px-2 py-1">Thought Leadership</p>
                 {thoughtLeadership.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => { setIsOpen(false); handleNavClick(item.path); }}
                     className="block text-foreground hover:text-accent transition-colors py-2 pl-4"
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
-
-              <div>
-                <p className="text-sm font-semibold text-muted-foreground px-2 py-1">Services</p>
-                {services.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-foreground hover:text-accent transition-colors py-2 pl-4"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <p className="text-sm font-semibold text-muted-foreground px-2 py-1 mt-2">
-                  Assessments
-                </p>
-                {assessments.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-foreground hover:text-accent transition-colors py-2 pl-4"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-
-              <Link
-                to="/about"
-                onClick={() => setIsOpen(false)}
-                className="text-foreground hover:text-accent transition-colors font-medium py-2"
-              >
-                About
-              </Link>
+              <Link to="/services" onClick={() => { setIsOpen(false); handleNavClick('/services'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">Services</Link>
+              <Link to="/assessments" onClick={() => { setIsOpen(false); handleNavClick('/assessments'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">Assessments</Link>
+              <Link to="/case-studies" onClick={() => { setIsOpen(false); handleNavClick('/case-studies'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">Case Studies</Link>
+              <Link to="/about" onClick={() => { setIsOpen(false); handleNavClick('/about'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">About</Link>
 
               <Button
-                onClick={() => {
-                  setIsOpen(false);
-                  scrollToContact();
-                }}
+                onClick={() => { setIsOpen(false); scrollToContact(); }}
                 variant="premium"
                 className="w-full shadow-lg"
               >

@@ -2,59 +2,45 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ClipboardCheck, Target, TrendingUp, Users, BarChart, Lightbulb } from "lucide-react";
+// --- STEP 1: Import useNavigate and the icons you need ---
+import { useNavigate } from "react-router-dom";
+import { ClipboardCheck, Users, BrainCircuit } from "lucide-react";
 
+// --- STEP 2: Update the interface to use 'path' ---
 interface Assessment {
   id: string;
   title: string;
   description: string;
-  icon: any;
-  link: string;
+  icon: any; // Icon component
+  path: string; // Changed from 'link' to 'path'
 }
 
 const Assessments = () => {
+  // --- STEP 3: Get the navigate function ---
+  const navigate = useNavigate();
+
+  // --- STEP 4: Replace placeholder array with real data ---
   const assessments: Assessment[] = [
     {
       id: "1",
-      title: "Business Readiness Assessment",
-      description: "Evaluate your organization's preparedness for growth and transformation",
-      icon: Target,
-      link: "#",
+      title: "CX Maturity Assessment",
+      description: "Measure your CX readiness across 8 dimensions to baseline how your brand promise is delivered.",
+      icon: ClipboardCheck,
+      path: "/assessments/cx-maturity",
     },
     {
       id: "2",
-      title: "Digital Maturity Score",
-      description: "Measure your digital capabilities and identify improvement areas",
-      icon: TrendingUp,
-      link: "#",
+      title: "CS Maturity Assessment",
+      description: "Evaluate your Customer Success maturity and identify opportunities for improvement.",
+      icon: Users,
+      path: "/assessments/cs-maturity",
     },
     {
       id: "3",
-      title: "Team Effectiveness Survey",
-      description: "Assess collaboration, communication, and productivity levels",
-      icon: Users,
-      link: "#",
-    },
-    {
-      id: "4",
-      title: "Strategy Alignment Check",
-      description: "Ensure your initiatives align with organizational goals",
-      icon: ClipboardCheck,
-      link: "#",
-    },
-    {
-      id: "5",
-      title: "Innovation Capability Index",
-      description: "Evaluate your organization's capacity for innovation and creativity",
-      icon: Lightbulb,
-      link: "#",
-    },
-    {
-      id: "6",
-      title: "Performance Analytics Review",
-      description: "Comprehensive analysis of your key performance indicators",
-      icon: BarChart,
-      link: "#",
+      title: "Culture Maturity Assessment",
+      description: "Assess your organizational culture and identify areas for transformation.",
+      icon: BrainCircuit,
+      path: "/assessments/culture-maturity",
     },
   ];
 
@@ -73,7 +59,8 @@ const Assessments = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* --- STEP 5: Adjusted grid for 3 items --- */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {assessments.map((assessment, index) => {
                 const Icon = assessment.icon;
                 return (
@@ -98,12 +85,13 @@ const Assessments = () => {
                       </div>
                     </CardHeader>
                     <CardContent>
+                      {/* --- STEP 6: Use navigate onClick --- */}
                       <Button 
                         variant="premium" 
                         className="w-full"
-                        onClick={() => window.open(assessment.link, '_blank')}
+                        onClick={() => navigate(assessment.path)}
                       >
-                        Take Assessment
+                        Learn More
                       </Button>
                     </CardContent>
                   </Card>
