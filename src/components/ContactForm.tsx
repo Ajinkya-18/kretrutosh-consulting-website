@@ -6,7 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+/*import { supabase } from "@/integrations/supabase/client"; */
+import { supabase } from "@/lib/supabaseClient";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

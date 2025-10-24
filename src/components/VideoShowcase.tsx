@@ -1,35 +1,37 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Youtube } from "lucide-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabaseClient";
+
 
 interface Video {
-  id: string;
+  id: number;
   title: string;
   description: string;
   youtubeId: string;
 }
 
 const VideoShowcase = () => {
-  const videos: Video[] = [
-    {
-      id: "1",
-      title: "Frictionless Customer Journeys",
-      description: "Breaking down barriers in customer experience",
-      youtubeId: "nJiPQu4kwkw", // Placeholder - Replace with actual theXTPodcast video ID
-    },
-    {
-      id: "2",
-      title: "Customer Experience Excellence",
-      description: "Transformative strategies for exceptional CX",
-      youtubeId: "U3s8DG8lODQ", // Placeholder - Replace with actual theXTPodcast video ID
-    },
-    {
-      id: "3",
-      title: "Strategic Customer Advantage",
-      description: "Transform CX into a competitive edge",
-      youtubeId: "5O7dzKNy1AU", // Placeholder - Replace with actual theXTPodcast video ID
-    },
-  ];
+  const [videos, setVideos] = useState<Video[]>([]);
+
+  // 2. Use useEffect to fetch data on component mount
+  useEffect(() => {
+    const fetchVideos = async () => {
+      // 3. This is the Supabase query!
+      const { data, error } = await supabase
+        .from('videos') // The name of your table
+        .select('*');   // Get all columns
+
+      if (error) {
+        console.error("Error fetching videos:", error);
+      } else if (data) {
+        setVideos(data);
+      }
+    };
+
+    fetchVideos();
+  }, []); // The empty array [] means this runs only once
 
   return (
     <section id="videos" className="py-20 bg-muted/30">
