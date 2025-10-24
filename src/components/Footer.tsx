@@ -93,7 +93,7 @@ const Footer = () => {
             <p className="text-muted-foreground mb-4">
               Subscribe to get the latest insights and updates.
             </p>
-            /*
+            {/*
             <div className="flex gap-2">
               <input
                 type="email"
@@ -104,7 +104,7 @@ const Footer = () => {
                 <Mail className="h-5 w-5" />
               </button>
             </div>
-            */
+            */}
             <form className="flex gap-2">
               <input
                type="email"
