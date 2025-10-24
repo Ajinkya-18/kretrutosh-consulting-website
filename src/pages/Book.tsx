@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, QrCode } from "lucide-react";
-import bookCover from "@/assets/book-cover.jpg";
+import bookCover from "@/assets/book-cover.png";
 import qrBook from "@/assets/qr-book.jpg";
 
 const Book = () => {
