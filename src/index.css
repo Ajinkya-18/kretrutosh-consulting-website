@@ -21,14 +21,18 @@ All colors MUST be HSL.
     --secondary-foreground: 215 25% 15%;
     --muted: 210 20% 96%;
     --muted-foreground: 215 15% 50%;
-    --accent: 43 84% 55%;
-    --accent-foreground: 215 28% 17%;
-    --accent-hover: 43 84% 48%;
+    /*--accent: 43 84% 55%;                /*Changed for blue color*/
+    --accent: 217 90% 55%;
+    /*--accent-foreground: 215 28% 17%; */
+    --accent-foreground: 0 0% 98%;
+    /*--accent-hover: 43 84% 48%; */
+    --accent-hover: 217 80% 48%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 215 18% 88%;
     --input: 215 18% 91%;
-    --ring: 43 84% 55%;
+    /*--ring: 43 84% 55%; */
+    --ring: 217 90% 55%;
     --radius: 0.75rem;
     
     /* Gradients - Professional consulting palette */
@@ -36,7 +40,8 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(215 30% 12%) 0%, hsl(215 28% 17%) 50%, hsl(215 30% 12%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
     --gradient-subtle: linear-gradient(135deg, hsl(210 20% 98%) 0%, hsl(0 0% 100%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(43 84% 55%) 0%, hsl(38 90% 62%) 100%);
+    /*--gradient-accent: linear-gradient(135deg, hsl(43 84% 55%) 0%, hsl(38 90% 62%) 100%); */
+    --gradient-accent: linear-gradient(135deg, hsl(217 90% 55%) 0%, hsl(210 90% 65%) 100%);
     
     /* Shadows - Refined for smoother performance */
     --shadow-sm: 0 1px 2px 0 hsl(215 28% 17% / 0.05);
@@ -44,7 +49,8 @@ All colors MUST be HSL.
     --shadow-lg: 0 10px 15px -3px hsl(215 28% 17% / 0.1), 0 4px 6px -2px hsl(215 28% 17% / 0.05);
     --shadow-xl: 0 20px 25px -5px hsl(215 28% 17% / 0.12), 0 10px 10px -5px hsl(215 28% 17% / 0.06);
     --shadow-elegant: 0 8px 32px -8px hsl(215 28% 17% / 0.18);
-    --shadow-glow: 0 0 40px hsl(43 84% 55% / 0.2);
+    /*--shadow-glow: 0 0 40px hsl(43 84% 55% / 0.2); */
+    --shadow-glow: 0 0 40px hsl(217 90% 55% / 0.2);
     --shadow-hover: 0 12px 28px -4px hsl(215 28% 17% / 0.18), 0 4px 12px -2px hsl(215 28% 17% / 0.08);
     
     /* Transitions - Optimized for performance (will-change handled per component) */
@@ -72,9 +78,12 @@ All colors MUST be HSL.
     --popover: 215 28% 14%;
     --popover-foreground: 210 15% 95%;
 
-    --primary: 43 84% 55%;
+    /*--primary: 43 84% 55%;
     --primary-foreground: 215 28% 17%;
-    --primary-glow: 43 90% 65%;
+    --primary-glow: 43 90% 65%; */
+    --primary: 217 90% 55%;
+    --primary-foreground: 215 28% 17%;
+    --primary-glow: 217 90% 65%;
 
     --secondary: 215 20% 18%;
     --secondary-foreground: 210 15% 95%;
@@ -82,7 +91,9 @@ All colors MUST be HSL.
     --muted: 215 22% 16%;
     --muted-foreground: 210 15% 70%;
 
-    --accent: 43 84% 55%;
+    /*--accent: 43 84% 55%;
+    --accent-foreground: 215 28% 17%; */
+    --accent: 217 90% 55%;
     --accent-foreground: 215 28% 17%;
 
     --destructive: 0 70% 50%;
@@ -90,17 +101,20 @@ All colors MUST be HSL.
 
     --border: 215 20% 22%;
     --input: 215 20% 22%;
-    --ring: 43 84% 55%;
+    /*--ring: 43 84% 55%; */
+    --ring: 217 90% 55%;
     
     --gradient-primary: linear-gradient(135deg, hsl(215 28% 17%) 0%, hsl(215 25% 28%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(215 30% 8%) 0%, hsl(215 28% 14%) 50%, hsl(215 30% 8%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(215 28% 14%) 0%, hsl(215 30% 10%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(43 84% 55%) 0%, hsl(38 90% 62%) 100%);
+    /*--gradient-accent: linear-gradient(135deg, hsl(43 84% 55%) 0%, hsl(38 90% 62%) 100%); */
+    --gradient-accent: linear-gradient(135deg, hsl(217 90% 55%) 0%, hsl(210 90% 65%) 100%);
     
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.25);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.35), 0 2px 4px -1px hsl(0 0% 0% / 0.25);
     --shadow-elegant: 0 8px 32px -8px hsl(0 0% 0% / 0.45);
-    --shadow-glow: 0 0 35px hsl(43 84% 55% / 0.3);
+    /*--shadow-glow: 0 0 35px hsl(43 84% 55% / 0.3); */
+    --shadow-glow: 0 0 35px hsl(217 90% 55% / 0.3);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "./ui/input";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -91,6 +93,7 @@ const Footer = () => {
             <p className="text-muted-foreground mb-4">
               Subscribe to get the latest insights and updates.
             </p>
+            /*
             <div className="flex gap-2">
               <input
                 type="email"
@@ -101,6 +104,17 @@ const Footer = () => {
                 <Mail className="h-5 w-5" />
               </button>
             </div>
+            */
+            <form className="flex gap-2">
+              <input
+               type="email"
+               placeholder="Your email"
+               className="flex-1 px-3 py-2 rounded-md border border-input bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              />
+              <Button type="submit" variant="premium" className="px-5">
+                Subscribe
+              </Button> 
+            </form>
           </div>
         </div>
 

@@ -53,7 +53,8 @@ const Hero = () => {
               size="lg"
               variant="outline"
               onClick={() => navigate("/about")}
-              className="text-lg border-2 border-white/40 text-foreground bg-white/95 hover:bg-white hover:text-foreground hover:border-white hover:shadow-xl"
+              /*className="text-lg border-2 border-white/40 text-foreground bg-white/95 hover:bg-white hover:text-foreground hover:border-white hover:shadow-xl" */
+              className="text-lg border-2 border-white/80 text-foreground bg-white/95 hover:bg-white hover:text-foreground hover:border-white hover:shadow-xl backdrop-blur-sm"
             >
               Learn More
             </Button>
