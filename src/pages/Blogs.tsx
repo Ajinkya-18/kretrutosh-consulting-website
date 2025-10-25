@@ -1,118 +1,155 @@
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabaseClient";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, BookOpen } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Linkedin } from "lucide-react"; // --- 1. Import Linkedin icon ---
+import { Button } from "@/components/ui/button"; // --- 2. Import Button component ---
 
-interface BlogPost {
-  id: string;
+// 1. Define the Blog interface to match your table
+interface Blog {
+  id: number;
+  created_at: string;
   title: string;
-  excerpt: string;
-  mediumUrl: string;
-  date: string;
+  description: string;
+  link: string;
+  image_url: string | null;
+  publish_date: string | null;
 }
 
 const Blogs = () => {
-  const blogPosts: BlogPost[] = [
-    {
-      id: "1",
-      title: "The Future of Digital Transformation",
-      excerpt: "Exploring how organizations can leverage technology to stay ahead in an evolving marketplace...",
-      mediumUrl: "https://medium.com/@yourhandle/post1",
-      date: "March 2025",
-    },
-    {
-      id: "2",
-      title: "5 Strategies for Organizational Growth",
-      excerpt: "Proven approaches that help businesses scale effectively while maintaining quality...",
-      mediumUrl: "https://medium.com/@yourhandle/post2",
-      date: "February 2025",
-    },
-    {
-      id: "3",
-      title: "Customer-Centric Innovation",
-      excerpt: "Learn how putting customers first drives sustainable business success...",
-      mediumUrl: "https://medium.com/@yourhandle/post3",
-      date: "January 2025",
-    },
-    {
-      id: "4",
-      title: "Building High-Performance Teams",
-      excerpt: "Key principles for creating collaborative and productive work environments...",
-      mediumUrl: "https://medium.com/@yourhandle/post4",
-      date: "December 2024",
-    },
-    {
-      id: "5",
-      title: "Data-Driven Decision Making",
-      excerpt: "How to leverage analytics and insights for better business outcomes...",
-      mediumUrl: "https://medium.com/@yourhandle/post5",
-      date: "November 2024",
-    },
-    {
-      id: "6",
-      title: "Navigating Change Management",
-      excerpt: "Essential strategies for leading organizations through transformation...",
-      mediumUrl: "https://medium.com/@yourhandle/post6",
-      date: "October 2024",
-    },
-  ];
+  // 2. Set up state to hold your blog posts
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 3. Use an effect to fetch the data on page load
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      setIsLoading(true);
+      // We order by 'publish_date' to show the newest posts first
+      const { data, error } = await supabase
+        .from('blogs')
+        .select('*')
+        .order('publish_date', { ascending: false });
+
+      if (error) {
+        console.error("Error fetching blogs:", error);
+      } else if (data) {
+        setBlogs(data);
+      }
+      setIsLoading(false);
+    };
+
+    fetchBlogs();
+  }, []);
+
+  // Helper to format the date
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return null;
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
 
   return (
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
-          
-          <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="text-center mb-12 animate-fade-in">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
-                Latest Insights
+        {/* Header Section */}
+        <section className="py-24 pt-48 text-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto animate-fade-in">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Blogs & Articles
               </h1>
-              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto animate-fade-in-up">
-                Expert perspectives and thought leadership on Medium
+              <p className="text-xl md:text-2xl text-muted-foreground mb-8 animate-fade-in-up">
+                Insights, strategies, and expert opinions on business transformation.
               </p>
+              <Button 
+                size="lg"
+                variant="premium"
+                className="animate-scale-in"
+                asChild
+              >
+                <a 
+                  href="https://www.linkedin.com/in/ashutosh-karandikar-ccxp/recent-activity/articles/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin className="mr-2 h-5 w-5" />
+                  Visit LinkedIn Library
+                </a>
+              </Button>
             </div>
           </div>
-
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </section>
 
+        {/* Blog Posts Grid Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post, index) => (
-                <Card 
-                  key={post.id}
-                  className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in border-border/50"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CardHeader>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <BookOpen className="h-4 w-4" />
-                      <span>{post.date}</span>
-                    </div>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {post.title}
-                    </CardTitle>
-                    <CardDescription className="line-clamp-3">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button 
-                      variant="outline" 
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all"
-                      onClick={() => window.open(post.mediumUrl, '_blank')}
+              {isLoading ? (
+                // Optional: Show loading skeletons
+                <p className="text-muted-foreground">Loading posts...</p>
+              ) : (
+                // 4. Map over the 'blogs' state and render a Card for each
+                blogs.map((blog, index) => (
+                  <a 
+                    href={blog.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    key={blog.id}
+                    className="group"
+                  >
+                    <Card
+                      className="h-full group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in border-border/50 overflow-hidden flex flex-col"
+                      style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                      Read on Medium
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+                      {/* Blog Post Image */}
+                      {blog.image_url && (
+                        <div className="aspect-video overflow-hidden bg-muted">
+                          <img
+                            src={blog.image_url}
+                            alt={blog.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
+
+                      <div className="flex flex-col justify-between flex-grow">
+                        <CardHeader>
+                          <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                            {blog.title}
+                          </CardTitle>
+                          <CardDescription className="text-base pt-2">
+                            {blog.description}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-primary">
+                            Read Article
+                            <ArrowRight className="inline-block ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          </span>
+                          {blog.publish_date && (
+                            <Badge variant="secondary" className="font-normal">
+                              {formatDate(blog.publish_date)}
+                            </Badge>
+                          )}
+                        </CardContent>
+                      </div>
+                    </Card>
+                  </a>
+                ))
+              )}
             </div>
+            {blogs.length === 0 && !isLoading && (
+              <p className="text-center text-muted-foreground text-lg">
+                No blog posts found. Check back soon!
+              </p>
+            )}
           </div>
         </section>
       </main>

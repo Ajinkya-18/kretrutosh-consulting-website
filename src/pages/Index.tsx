@@ -4,38 +4,53 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Target, TrendingUp, Users, Zap } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const services = [
-    {
-      icon: <Target className="h-8 w-8" />,
-      title: "Pre Sales",
-      description: "Align brand purpose, positioning, and GTM readiness",
-      path: "/services/pre-sales",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8" />,
-      title: "Sales",
-      description: "Accelerate acquisition, conversion, and predictable revenue",
-      path: "/services/sales",
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "Post Sales",
-      description: "Maximize customer retention, expansion, and advocacy",
-      path: "/services/post-sales",
-    },
-    {
-      icon: <Zap className="h-8 w-8" />,
-      title: "Digital Enablement",
-      description: "Empower GTM Velocity through unified data and platforms",
-      path: "/services/digital-enablement",
-    },
-  ];
+  useEffect(() => {
+    // Check if we were navigated here with a request to scroll
+    if (location.state?.scrollTo === 'contact') {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        // Scroll to the contact section smoothly
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+        // Optional: clear the state so it doesn't re-trigger on refresh
+        navigate(location.pathname, { replace: true, state: {} });
+      }
+    }
+  }, [location.state, navigate, location.pathname]); // Dependencies for the effect
+
+  // const services = [
+  //   {
+  //     icon: <Target className="h-8 w-8" />,
+  //     title: "Pre Sales",
+  //     description: "Align brand purpose, positioning, and GTM readiness",
+  //     path: "/services/pre-sales",
+  //   },
+  //   {
+  //     icon: <TrendingUp className="h-8 w-8" />,
+  //     title: "Sales",
+  //     description: "Accelerate acquisition, conversion, and predictable revenue",
+  //     path: "/services/sales",
+  //   },
+  //   {
+  //     icon: <Users className="h-8 w-8" />,
+  //     title: "Post Sales",
+  //     description: "Maximize customer retention, expansion, and advocacy",
+  //     path: "/services/post-sales",
+  //   },
+  //   {
+  //     icon: <Zap className="h-8 w-8" />,
+  //     title: "Digital Enablement",
+  //     description: "Empower GTM Velocity through unified data and platforms",
+  //     path: "/services/digital-enablement",
+  //   },
+  // ];
 
   return (
     <div className="min-h-screen">
@@ -43,7 +58,7 @@ const Index = () => {
       <main>
         <Hero />
 
-        {/* Services Overview */}
+        {/* Services Overview
         <section className="py-24 bg-gradient-to-b from-muted/30 via-background to-muted/20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16 animate-fade-in space-y-4">
@@ -89,7 +104,7 @@ const Index = () => {
               </Button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <ContactForm />
       </main>

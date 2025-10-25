@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Quote, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CaseStudy {
@@ -16,97 +16,78 @@ interface CaseStudy {
   tags: string[];
 }
 
-interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  company: string;
-  content: string;
-  rating: number;
-}
-
 const CaseStudiesPage = () => {
+  // Data extracted from the provided PDF
   const caseStudies: CaseStudy[] = [
     {
       id: "1",
-      title: "Digital Transformation Success",
-      client: "Tech Corp Inc.",
-      industry: "Technology",
-      challenge: "Legacy systems preventing scalability and innovation",
-      solution: "Implemented cloud-based infrastructure and agile methodologies",
-      results: ["40% cost reduction", "3x faster deployment", "95% customer satisfaction"],
-      tags: ["Digital Transformation", "Cloud Migration", "Agile"],
+      title: "Customer Experience Transformation",
+      client: "InLife Insurance",
+      industry: "Insurance",
+      challenge: "Managed high drop-off rates (61.8%) on its digital policy application journey, signaling significant revenue leakage and customer disengagement.",
+      solution: "Adopted a phased 'Crawl-Walk-Run' approach, using CX metric baselining to prioritize drop-off reduction and overhauling the website UX with a prominent quote generator.",
+      results: [
+        "Drop-off rate reduced from 61.8% to 57.6%",
+        "Quote submitted to requested ratio improved from 63% to 68%",
+        "Incremental annualized policy revenue of Peso 2.67 million",
+      ],
+      tags: ["Customer Experience", "Digital Transformation", "Insurance"],
     },
     {
       id: "2",
-      title: "Customer Experience Overhaul",
-      client: "Retail Solutions Ltd.",
-      industry: "Retail",
-      challenge: "Low customer engagement and declining retention rates",
-      solution: "Redesigned customer journey with data-driven personalization",
-      results: ["60% increase in engagement", "45% higher retention", "2x conversion rate"],
-      tags: ["CX Design", "Personalization", "Analytics"],
+      title: "Customer Experience Transformation",
+      client: "Value Retail",
+      industry: "Luxury Retail",
+      challenge: "Sought to evolve the customer journey to better connect guest experience, brand partner experience, and digital engagement across all touchpoints.",
+      solution: "Launched a dedicated customer community using the Alida platform, integrating behavioral and attitudinal data to create actionable insights for retail operations.",
+      results: [
+        "+14% improvement in visit-to-conversion ratio",
+        "+11% increase in average spend per visitor",
+        "Delivered quarterly insights to brand and operations teams",
+      ],
+      tags: ["Customer Experience", "Retail", "Data & Analytics"],
     },
     {
       id: "3",
-      title: "Operational Excellence Initiative",
-      client: "Manufacturing Pro",
-      industry: "Manufacturing",
-      challenge: "Inefficient processes causing delays and quality issues",
-      solution: "Process optimization and automation implementation",
-      results: ["50% faster production", "30% quality improvement", "25% cost savings"],
-      tags: ["Process Optimization", "Automation", "Quality"],
-    },
-  ];
-
-  const testimonials: Testimonial[] = [
-    {
-      id: "1",
-      name: "Sarah Johnson",
-      role: "CEO",
-      company: "Tech Innovations Inc.",
-      content: "Working with this team transformed our business. Their insights and strategic approach delivered results beyond our expectations. Highly recommended!",
-      rating: 5,
-    },
-    {
-      id: "2",
-      name: "Michael Chen",
-      role: "Director of Operations",
-      company: "Global Solutions Ltd.",
-      content: "The assessments provided invaluable clarity on our challenges. The implementation was smooth, and we saw measurable improvements within weeks.",
-      rating: 5,
-    },
-    {
-      id: "3",
-      name: "Emily Rodriguez",
-      role: "VP of Marketing",
-      company: "Creative Brands Co.",
-      content: "Exceptional service and expertise. They understood our unique needs and delivered tailored solutions that made a real difference.",
-      rating: 5,
+      title: "Customer Success Transformation",
+      client: "Altudo",
+      industry: "Digital Consultancy & SaaS",
+      challenge: "The Customer Success (CS) function operated in silos, lacking standardized engagement frameworks and data-backed visibility into renewals and expansion.",
+      solution: "Conducted a CS Maturity Assessment and introduced the VICTORY™ Framework to drive value realization, expansion, and referrals from existing accounts.",
+      results: [
+        "+16% uplift in license renewals",
+        "+22% increase in cross-sell and upsell conversions",
+        "Reduced churn by 20% through predictive health scoring",
+      ],
+      tags: ["Customer Success", "SaaS", "GTM Strategy"],
     },
     {
       id: "4",
-      name: "David Thompson",
-      role: "Founder",
-      company: "StartUp Ventures",
-      content: "The resources and guidance provided helped us scale rapidly while maintaining quality. Their approach is both practical and visionary.",
-      rating: 5,
+      title: "Culture Transformation",
+      client: "Symega Foods",
+      industry: "Food Manufacturing",
+      challenge: "As the company expanded, the need to discover, articulate, and embed a shared culture became essential for scalable growth.",
+      solution: "Facilitated inclusive workshops for value discovery, created behavior blueprints, and integrated culture into recruitment and onboarding frameworks.",
+      results: [
+        "23% improvement in product innovation cycle time",
+        "19% boost in employee engagement (+6pp in eNPS)",
+        "13% reduction in internal conflicts",
+      ],
+      tags: ["Culture Transformation", "Employee Engagement", "Manufacturing"],
     },
     {
       id: "5",
-      name: "Lisa Anderson",
-      role: "Chief Strategy Officer",
-      company: "Enterprise Systems",
-      content: "Professional, knowledgeable, and results-driven. They've become a trusted partner in our growth journey.",
-      rating: 5,
-    },
-    {
-      id: "6",
-      name: "Robert Kim",
-      role: "Managing Director",
-      company: "Innovation Group",
-      content: "The case studies and insights shared were eye-opening. We've implemented many of their recommendations with great success.",
-      rating: 5,
+      title: "Culture Transformation",
+      client: "Maveric Systems",
+      industry: "IT Services / Banking Tech",
+      challenge: "Rapid hiring fragmented the company culture into function-specific microcultures, diluting shared identity and impacting collaboration.",
+      solution: "Conducted a 7-dimension culture maturity assessment, aligned leadership around 4 core values, and realigned hiring and onboarding processes.",
+      results: [
+        "17% reduction in early attrition (0-6 months)",
+        "18% increase in cross-functional collaboration",
+        "27% improvement in ownership & accountability",
+      ],
+      tags: ["Culture Transformation", "IT Services", "Leadership"],
     },
   ];
 
@@ -114,7 +95,6 @@ const CaseStudiesPage = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        {/* Case Studies Section */}
         <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12 animate-fade-in">
@@ -171,9 +151,9 @@ const CaseStudiesPage = () => {
                           </li>
                         ))}
                       </ul>
-                      <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+                      {/* <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all">
                         Read Full Story
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </Card>
@@ -182,49 +162,8 @@ const CaseStudiesPage = () => {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Client Testimonials
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Hear what our clients say about their experience working with us
-              </p>
-            </div>
+        {/* --- Testimonials Section has been removed as per the PDF content --- */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <Card 
-                  key={testimonial.id}
-                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in border-border/50 relative overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <Quote className="h-16 w-16 text-primary" />
-                  </div>
-                  <CardContent className="pt-6 relative">
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-accent text-accent" />
-                      ))}
-                    </div>
-                    <p className="text-foreground mb-6 leading-relaxed italic">
-                      "{testimonial.content}"
-                    </p>
-                    <div className="border-t border-border pt-4">
-                      <p className="font-semibold text-foreground">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}, {testimonial.company}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>

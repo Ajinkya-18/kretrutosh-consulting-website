@@ -40,39 +40,33 @@ const Videos = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
-          
-          <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="text-center mb-12 animate-fade-in">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
+        <section className="py-24 pt-48 text-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto animate-fade-in">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Video Library
               </h1>
-              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-8 animate-fade-in-up">
+              <p className="text-xl md:text-2xl text-muted-foreground mb-8 animate-fade-in-up">
                 Explore our collection of insights, tutorials, and success stories
               </p>
-          <Button 
-            size="lg"
-            variant="premium"
-            className="animate-scale-in"
-            asChild
-          >
-            <a 
-              href="https://www.youtube.com/@theXTPodcast" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <Youtube className="mr-2 h-5 w-5" />
-              Visit Our YouTube Channel
-            </a>
-          </Button>
-          <p className="text-sm text-primary-foreground/70 mt-4 animate-fade-in">
-            Note: To enable dynamic video loading, provide your YouTube API key
-          </p>
+              <Button 
+                size="lg"
+                variant="premium"
+                className="animate-scale-in"
+                asChild
+              >
+                <a 
+                  href="https://www.youtube.com/@theXTPodcast" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Youtube className="mr-2 h-5 w-5" />
+                  Visit Our YouTube Channel
+                </a>
+              </Button>
+              {/* Removed the 'Note:...' as it's not needed for the user */}
             </div>
           </div>
-
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </section>
 
         <section className="py-20">

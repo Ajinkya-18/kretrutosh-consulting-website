@@ -17,7 +17,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation(); // Get current location
 
-  // This logic is correct
   const handleNavClick = (path: string) => {
     if (location.pathname === path) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -25,9 +24,17 @@ const Navbar = () => {
     // For new pages, the <Link> component handles navigation
   };
 
+  // This function scrolls to the contact form section
   const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    contactSection?.scrollIntoView({ behavior: "smooth" });
+    // If we're on the home page, just scroll smoothly.
+    if (location.pathname === '/') {
+      const contactSection = document.getElementById("contact");
+      contactSection?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // If we're on another page, navigate to home and pass
+      // a 'state' object telling the home page to scroll.
+      navigate('/', { state: { scrollTo: 'contact' } });
+    }
   };
 
   const thoughtLeadership = [
@@ -40,7 +47,6 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-xl border-b border-border/60 shadow-lg transition-all duration-300">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* --- FIX: onClick moved from <Link> to the parent anchor tag --- */}
           <Link to="/" onClick={() => handleNavClick('/')} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img src={logo} alt="KretruTosh Consulting" className="h-12" />
           </Link>
@@ -48,14 +54,15 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             
-            {/* --- FIX: onClick moved from <Link> to parent <Button> --- */}
-            <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/')}>
+            {/* --- FIX: Changed variant to "secondary" --- */}
+            <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/')}>
               <Link to="/">Home</Link>
             </Button>
 
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
+                  {/* This component already has the correct style */}
                   <NavigationMenuTrigger className="text-foreground hover:text-accent">
                     Thought Leadership
                   </NavigationMenuTrigger>
@@ -63,7 +70,6 @@ const Navbar = () => {
                     <ul className="grid w-48 gap-2 p-4 bg-popover">
                       {thoughtLeadership.map((item) => (
                         <li key={item.path}>
-                          {/* --- FIX: onClick moved from <Link> to parent <NavigationMenuLink> --- */}
                           <NavigationMenuLink asChild onClick={() => handleNavClick(item.path)}>
                             <Link
                               to={item.path}
@@ -77,28 +83,36 @@ const Navbar = () => {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
+                
+                {/* --- FIX: Changed variant to "secondary" --- */}
                 <NavigationMenuItem>
-                  <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/services')}>
+                  <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/services')}>
                     <Link to="/services">Services</Link>
                   </Button>
                 </NavigationMenuItem>
+                
+                {/* --- FIX: Changed variant to "secondary" --- */}
                 <NavigationMenuItem>
-                  <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/assessments')}>
+                  <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/assessments')}>
                     <Link to="/assessments">Assessments</Link>
                   </Button>
                 </NavigationMenuItem>
+                
+                {/* --- FIX: Changed variant to "secondary" --- */}
                 <NavigationMenuItem>
-                  <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/case-studies')}>
+                  <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/case-studies')}>
                     <Link to="/case-studies">Case Studies</Link>
                   </Button>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
 
-            <Button asChild variant="ghost" className="text-foreground hover:text-accent font-semibold" onClick={() => handleNavClick('/about')}>
+            {/* --- FIX: Changed variant to "secondary" --- */}
+            <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/about')}>
               <Link to="/about">About</Link>
             </Button>
 
+            {/* --- FIX: Added onClick={scrollToContact} --- */}
             <Button onClick={scrollToContact} variant="premium" className="shadow-lg hover:shadow-xl">
               Get Started
             </Button>

@@ -11,21 +11,17 @@ const Book = () => {
       <Navbar />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-glow to-primary/80">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10" />
-          
-          <div className="container mx-auto px-4 py-20 relative z-10">
-            <div className="max-w-4xl mx-auto text-center animate-fade-in">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-primary-foreground">
+        <section className="py-24 pt-48 text-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto animate-fade-in">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Beyond Customer Satisfaction
               </h1>
-              <p className="text-xl md:text-2xl text-primary-foreground/90 animate-fade-in-up">
+              <p className="text-xl md:text-2xl text-muted-foreground animate-fade-in-up">
                 Crafting Exceptional Customer Experiences in the Age of "Kretru"
               </p>
             </div>
           </div>
-
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </section>
 
         {/* Book Content Section */}

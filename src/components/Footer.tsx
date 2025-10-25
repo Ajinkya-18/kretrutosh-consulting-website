@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
 
           {/* Column 3: Newsletter */}
-          <div>
+          {/* <div>
             <h4 className="font-semibold text-foreground mb-4">Newsletter</h4>
             <p className="text-muted-foreground mb-4">
               Subscribe to get the latest insights and updates.
@@ -78,7 +78,7 @@ const Footer = () => {
                 Subscribe
               </Button> 
             </form>
-          </div>
+          </div> */}
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
