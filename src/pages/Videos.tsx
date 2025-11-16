@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Youtube } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { motion } from "framer-motion"; // <-- 1. IMPORTED MOTION
 
 interface Video {
   id: number;
@@ -40,6 +41,7 @@ const Videos = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
+        {/* Header Section (Unchanged) */}
         <section className="py-24 pt-48 text-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto animate-fade-in">
@@ -64,35 +66,46 @@ const Videos = () => {
                   Visit Our YouTube Channel
                 </a>
               </Button>
-              {/* Removed the 'Note:...' as it's not needed for the user */}
             </div>
           </div>
         </section>
 
-        <section className="py-20">
+        {/* --- 4. PADDING UPDATED TO PY-24 --- */}
+        <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {videos.map((video, index) => (
-                <Card 
-                  key={video.id} 
-                  className="group hover:shadow-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in border-border/50"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                // --- 5. WRAPPED IN MOTION.DIV ---
+                <motion.div
+                  key={video.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <CardHeader>
-                    <div className="relative aspect-video rounded-lg overflow-hidden bg-muted mb-4">
-                      <iframe
-                        className="w-full h-full"
-                        src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                        title={video.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                    </div>
-                    <CardTitle className="text-xl">{video.title}</CardTitle>
-                    <CardDescription>{video.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                  <Card 
+                    // --- 6. STYLES UPDATED ---
+                    className="group border-border/50 bg-card
+                               transition-all duration-300
+                               hover:shadow-elegant hover:-translate-y-1"
+                    // Removed: animate-fade-in, hover:shadow-lg, hover:-translate-y-1 (already subtle), style prop
+                  >
+                    <CardHeader>
+                      <div className="relative aspect-video rounded-lg overflow-hidden bg-muted mb-4">
+                        <iframe
+                          className="w-full h-full"
+                          src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                          title={video.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                      </div>
+                      <CardTitle className="text-xl">{video.title}</CardTitle>
+                      <CardDescription>{video.description}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>

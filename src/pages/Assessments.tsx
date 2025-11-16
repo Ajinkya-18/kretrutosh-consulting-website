@@ -2,24 +2,21 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-// --- STEP 1: Import useNavigate and the icons you need ---
 import { useNavigate } from "react-router-dom";
 import { ClipboardCheck, Users, BrainCircuit } from "lucide-react";
+import { motion } from "framer-motion"; // <-- 1. Import motion
 
-// --- STEP 2: Update the interface to use 'path' ---
 interface Assessment {
   id: string;
   title: string;
   description: string;
-  icon: any; // Icon component
-  path: string; // Changed from 'link' to 'path'
+  icon: any; 
+  path: string;
 }
 
 const Assessments = () => {
-  // --- STEP 3: Get the navigate function ---
   const navigate = useNavigate();
 
-  // --- STEP 4: Replace placeholder array with real data ---
   const assessments: Assessment[] = [
     {
       id: "1",
@@ -48,7 +45,8 @@ const Assessments = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        {/* Header Section (Already uses light theme - correct) */}
+        <section className="py-24 pt-48 bg-gradient-to-br from-primary/5 via-background to-accent/5">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12 animate-fade-in">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -59,42 +57,49 @@ const Assessments = () => {
               </p>
             </div>
 
-            {/* --- STEP 5: Adjusted grid for 3 items --- */}
+            {/* --- 2. Layout updated with motion --- */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {assessments.map((assessment, index) => {
                 const Icon = assessment.icon;
                 return (
-                  <Card 
+                  <motion.div
                     key={assessment.id}
-                    className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in border-border/50"
-                    style={{ animationDelay: `${index * 0.1}s` }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <CardHeader>
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                          <Icon className="h-6 w-6" />
+                    <Card 
+                      className="group border-border/50 h-full flex flex-col
+                                 bg-card transition-all duration-300
+                                 hover:shadow-elegant hover:-translate-y-1" // <-- 3. Polished styles
+                    >
+                      <CardHeader>
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all">
+                            <Icon className="h-6 w-6" />
+                          </div>
+                          <div className="flex-1">
+                            <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
+                              {assessment.title}
+                            </CardTitle>
+                            <CardDescription className="text-base">
+                              {assessment.description}
+                            </CardDescription>
+                          </div>
                         </div>
-                        <div className="flex-1">
-                          <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                            {assessment.title}
-                          </CardTitle>
-                          <CardDescription className="text-base">
-                            {assessment.description}
-                          </CardDescription>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      {/* --- STEP 6: Use navigate onClick --- */}
-                      <Button 
-                        variant="premium" 
-                        className="w-full"
-                        onClick={() => navigate(assessment.path)}
-                      >
-                        Learn More
-                      </Button>
-                    </CardContent>
-                  </Card>
+                      </CardHeader>
+                      <CardContent className="mt-auto"> {/* Pushes button to bottom */}
+                        <Button 
+                          variant="premium" 
+                          className="w-full"
+                          onClick={() => navigate(assessment.path)}
+                        >
+                          Learn More
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 );
               })}
             </div>

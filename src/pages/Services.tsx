@@ -4,11 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Target, TrendingUp, Users, Zap, BrainCircuit } from "lucide-react";
+import { motion } from "framer-motion"; // <-- 1. Import motion
 
 const Services = () => {
   const navigate = useNavigate();
 
-  // --- 1. Combine all 5 services into one array ---
   const allServices = [
     {
       icon: <Target className="h-8 w-8" />,
@@ -46,7 +46,7 @@ const Services = () => {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        {/* Services Overview */}
+        {/* Header Section (Already uses light theme - correct) */}
         <section className="py-24 pt-48 bg-gradient-to-b from-muted/30 via-background to-muted/20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16 animate-fade-in space-y-4">
@@ -58,33 +58,41 @@ const Services = () => {
               </p>
             </div>
 
-            {/* --- 2. Remove old grid and special service card, replace with this new layout --- */}
+            {/* --- 2. Layout updated with motion --- */}
             <div className="max-w-4xl mx-auto space-y-8">
               {allServices.map((service, index) => (
-                <Card
+                <motion.div
                   key={service.path}
-                  className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer border-border/60 bg-gradient-to-br from-card via-card to-muted/20 hover:border-accent/40 overflow-hidden relative text-left"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => navigate(service.path)}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <CardHeader className="relative flex-row items-center gap-6 p-6"> {/* Added p-6 for consistent padding */}
-                    <div className="mb-0 text-accent group-hover:scale-110 transition-transform duration-500">
-                      {service.icon}
-                    </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-2xl group-hover:text-accent transition-colors duration-300">
-                        {service.title}
-                      </CardTitle>
-                      <CardDescription className="text-base leading-relaxed mt-1">
-                        {service.description}
-                      </CardDescription>
-                    </div>
-                     <Button variant="ghost" className="group-hover:text-accent p-0 font-semibold hidden md:inline-flex">
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
-                    </Button>
-                  </CardHeader>
-                </Card>
+                  <Card
+                    onClick={() => navigate(service.path)}
+                    className="group cursor-pointer border-border/60 bg-card overflow-hidden relative text-left 
+                               transition-all duration-300
+                               hover:shadow-elegant hover:-translate-y-1" // <-- 3. Polished styles
+                  >
+                    <CardHeader className="relative flex-row items-center gap-6 p-6">
+                      <div className="mb-0 text-accent group-hover:scale-110 transition-transform duration-500">
+                        {service.icon}
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-2xl group-hover:text-accent transition-colors duration-300">
+                          {service.title}
+                        </CardTitle>
+                        <CardDescription className="text-base leading-relaxed mt-1">
+                          {service.description}
+                        </CardDescription>
+                      </div>
+                       <Button variant="ghost" className="group-hover:text-accent p-0 font-semibold hidden md:inline-flex">
+                        Learn More
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
+                      </Button>
+                    </CardHeader>
+                  </Card>
+                </motion.div>
               ))}
             </div>
 

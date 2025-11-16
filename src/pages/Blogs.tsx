@@ -4,8 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Linkedin } from "lucide-react"; // --- 1. Import Linkedin icon ---
-import { Button } from "@/components/ui/button"; // --- 2. Import Button component ---
+import { ArrowRight, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion"; // <-- 1. IMPORTED MOTION
 
 // 1. Define the Blog interface to match your table
 interface Blog {
@@ -58,7 +59,7 @@ const Blogs = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
-        {/* Header Section */}
+        {/* Header Section (Unchanged) */}
         <section className="py-24 pt-48 text-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto animate-fade-in">
@@ -87,61 +88,73 @@ const Blogs = () => {
           </div>
         </section>
 
-        {/* Blog Posts Grid Section */}
-        <section className="py-20">
+        {/* --- 4. PADDING UPDATED TO PY-24 --- */}
+        <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {isLoading ? (
                 // Optional: Show loading skeletons
                 <p className="text-muted-foreground">Loading posts...</p>
               ) : (
-                // 4. Map over the 'blogs' state and render a Card for each
+                // 5. Map over the 'blogs' state and render a Card for each
                 blogs.map((blog, index) => (
-                  <a 
-                    href={blog.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  // --- 6. WRAPPED IN MOTION.DIV ---
+                  <motion.div
                     key={blog.id}
-                    className="group"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="h-full" // Ensures motion div respects grid height
                   >
-                    <Card
-                      className="h-full group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in border-border/50 overflow-hidden flex flex-col"
-                      style={{ animationDelay: `${index * 0.1}s` }}
+                    <a 
+                      href={blog.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group h-full"
                     >
-                      {/* Blog Post Image */}
-                      {blog.image_url && (
-                        <div className="aspect-video overflow-hidden bg-muted">
-                          <img
-                            src={blog.image_url}
-                            alt={blog.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                      )}
+                      <Card
+                        // --- 7. STYLES UPDATED ---
+                        className="h-full flex flex-col border-border/50 overflow-hidden 
+                                   bg-card transition-all duration-300
+                                   hover:shadow-elegant hover:-translate-y-1"
+                        // Removed: animate-fade-in, hover:shadow-xl, hover:-translate-y-2, style prop
+                      >
+                        {/* Blog Post Image */}
+                        {blog.image_url && (
+                          <div className="aspect-video overflow-hidden bg-muted">
+                            <img
+                              src={blog.image_url}
+                              alt={blog.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                        )}
 
-                      <div className="flex flex-col justify-between flex-grow">
-                        <CardHeader>
-                          <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                            {blog.title}
-                          </CardTitle>
-                          <CardDescription className="text-base pt-2">
-                            {blog.description}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-primary">
-                            Read Article
-                            <ArrowRight className="inline-block ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                          </span>
-                          {blog.publish_date && (
-                            <Badge variant="secondary" className="font-normal">
-                              {formatDate(blog.publish_date)}
-                            </Badge>
-                          )}
-                        </CardContent>
-                      </div>
-                    </Card>
-                  </a>
+                        <div className="flex flex-col justify-between flex-grow">
+                          <CardHeader>
+                            <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                              {blog.title}
+                            </CardTitle>
+                            <CardDescription className="text-base pt-2">
+                              {blog.description}
+                            </CardDescription>
+                          </CardHeader>
+                          <CardContent className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-primary">
+                              Read Article
+                              <ArrowRight className="inline-block ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                            </span>
+                            {blog.publish_date && (
+                              <Badge variant="secondary" className="font-normal">
+                                {formatDate(blog.publish_date)}
+                              </Badge>
+                            )}
+                          </CardContent>
+                        </div>
+                      </Card>
+                    </a>
+                  </motion.div>
                 ))
               )}
             </div>

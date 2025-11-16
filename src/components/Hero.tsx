@@ -27,22 +27,22 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight text-accent">
             KretruTosh Consulting
           </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto font-light">
+          <p className="text-xl md:text-2xl text-primary-foreground/110 leading-relaxed max-w-3xl mx-auto font-light">
             Maximize customer retention, drive expansion, and win referrals — by optimizing sales, customer success, digital platforms, and team culture
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-6 pb-8">
             <div className="group text-center px-8 py-5 bg-gradient-to-br from-accent/20 via-accent/10 to-transparent rounded-2xl backdrop-blur-md border border-accent/30 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:border-accent/50">
-              <p className="text-4xl md:text-5xl font-bold text-primary-foreground mb-1 group-hover:text-accent transition-colors">2-5x</p>
-              <p className="text-sm md:text-base text-primary-foreground/80 font-medium">Sales Velocity</p>
+              <p className="text-4xl md:text-5xl font-bold text-primary-foreground/ mb-1 group-hover:text-accent transition-colors">2-5x</p>
+              <p className="text-sm md:text-base text-primary-foreground/ font-medium">Sales Velocity</p>
             </div>
             <div className="group text-center px-8 py-5 bg-gradient-to-br from-accent/20 via-accent/10 to-transparent rounded-2xl backdrop-blur-md border border-accent/30 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:border-accent/50">
-              <p className="text-4xl md:text-5xl font-bold text-primary-foreground mb-1 group-hover:text-accent transition-colors">+12-25%</p>
-              <p className="text-sm md:text-base text-primary-foreground/80 font-medium">Retention</p>
+              <p className="text-4xl md:text-5xl font-bold text-primary-foreground/ mb-1 group-hover:text-accent transition-colors">+12-25%</p>
+              <p className="text-sm md:text-base text-primary-foreground/ font-medium">Retention</p>
             </div>
             <div className="group text-center px-8 py-5 bg-gradient-to-br from-accent/20 via-accent/10 to-transparent rounded-2xl backdrop-blur-md border border-accent/30 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:border-accent/50">
-              <p className="text-4xl md:text-5xl font-bold text-primary-foreground mb-1 group-hover:text-accent transition-colors">+20-40%</p>
-              <p className="text-sm md:text-base text-primary-foreground/80 font-medium">Revenue Expansion</p>
+              <p className="text-4xl md:text-5xl font-bold text-primary-foreground/ mb-1 group-hover:text-accent transition-colors">+20-40%</p>
+              <p className="text-sm md:text-base text-primary-foreground/ font-medium">Revenue Expansion</p>
             </div>
           </div>
 

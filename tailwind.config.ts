@@ -124,6 +124,9 @@ export default {
         "glow": "glow 2.5s ease-in-out infinite",
         "shimmer": "shimmer 2.5s ease-in-out infinite",
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
