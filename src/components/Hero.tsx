@@ -1,58 +1,70 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    contactSection?.scrollIntoView({ behavior: "smooth" });
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (window.location.pathname === "/") {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: "contact" } });
+    }
   };
 
   return (
-    // --- FIX #6: Background Image Added ---
     <section 
       id="hero" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: "url('/hero-background.jpg')" }}
+      className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-hero"
     >
-      {/* Dark overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-black/60" />
+      {/* Abstract Shapes/Glows */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary-glow/20 blur-[100px] animate-pulse" />
+        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-secondary/10 blur-[80px] animate-pulse delay-1000" />
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[60%] h-[40%] bg-primary/20 blur-[120px]" />
+      </div>
 
-      {/* Grid overlay (kept for texture) */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.07]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03]" />
       
       <div className="container mx-auto px-4 py-32 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight text-accent">
-            KretruTosh Consulting
+        <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in-up">
+          <div className="inline-block px-4 py-1.5 rounded-full border border-secondary/30 bg-secondary/10 backdrop-blur-sm mb-4">
+            <span className="text-secondary font-medium text-sm tracking-wide uppercase">
+              The Premier Growth Transformation Firm
+            </span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight text-white">
+            Build a Customer-Led <br />
+            <span className="text-secondary">Growth Engine</span> That Scales
           </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/110 leading-relaxed max-w-3xl mx-auto font-light">
-            Maximize customer retention, drive expansion, and win referrals — by optimizing sales, customer success, digital platforms, and team culture
+          
+          <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-4xl mx-auto font-light">
+            Integrated Go-To-Market (GTM), Customer Experience, Customer Success, Digital, AI & Culture Transformation — driving predictable, scalable growth across the customer lifecycle.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-6 pb-8">
-            <div className="group text-center px-8 py-5 bg-gradient-to-br from-accent/20 via-accent/10 to-transparent rounded-2xl backdrop-blur-md border border-accent/30 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:border-accent/50">
-              <p className="text-4xl md:text-5xl font-bold text-primary-foreground/ mb-1 group-hover:text-accent transition-colors">2-5x</p>
-              <p className="text-sm md:text-base text-primary-foreground/ font-medium">Sales Velocity</p>
-            </div>
-            <div className="group text-center px-8 py-5 bg-gradient-to-br from-accent/20 via-accent/10 to-transparent rounded-2xl backdrop-blur-md border border-accent/30 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:border-accent/50">
-              <p className="text-4xl md:text-5xl font-bold text-primary-foreground/ mb-1 group-hover:text-accent transition-colors">+12-25%</p>
-              <p className="text-sm md:text-base text-primary-foreground/ font-medium">Retention</p>
-            </div>
-            <div className="group text-center px-8 py-5 bg-gradient-to-br from-accent/20 via-accent/10 to-transparent rounded-2xl backdrop-blur-md border border-accent/30 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:border-accent/50">
-              <p className="text-4xl md:text-5xl font-bold text-primary-foreground/ mb-1 group-hover:text-accent transition-colors">+20-40%</p>
-              <p className="text-sm md:text-base text-primary-foreground/ font-medium">Revenue Expansion</p>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+            <Button 
+              size="lg" 
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold text-lg px-8 py-6 shadow-glow transition-all hover:scale-105"
+              onClick={handleContactClick}
+            >
+              Book a Growth Strategy Review
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 hover:text-white font-medium text-lg px-8 py-6 backdrop-blur-sm transition-all">
+              <Link to="/solutions">
+                Explore Transformation Programs
+              </Link>
+            </Button>
           </div>
-
-          {/* --- FIX #2: Redundant Button Div Removed --- */}
-          {/* The div containing "Get Started" and "Learn More" was here */}
-
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

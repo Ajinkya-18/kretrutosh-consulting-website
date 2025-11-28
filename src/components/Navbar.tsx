@@ -1,7 +1,9 @@
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useLocation
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import logo from "@/assets/kretrutosh-logo.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,157 +11,231 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import logo from "@/assets/kretrutosh-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
-  const location = useLocation(); // Get current location
 
-  const handleNavClick = (path: string) => {
-    if (location.pathname === path) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    // For new pages, the <Link> component handles navigation
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  // This function scrolls to the contact form section
-  const scrollToContact = () => {
-    // If we're on the home page, just scroll smoothly.
-    if (location.pathname === '/') {
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    if (location.pathname === "/") {
       const contactSection = document.getElementById("contact");
       contactSection?.scrollIntoView({ behavior: "smooth" });
     } else {
-      // If we're on another page, navigate to home and pass
-      // a 'state' object telling the home page to scroll.
-      navigate('/', { state: { scrollTo: 'contact' } });
+      navigate("/", { state: { scrollTo: "contact" } });
     }
   };
 
-  const thoughtLeadership = [
-    { name: "Book", path: "/book" },
-    { name: "Blogs & Articles", path: "/blogs" },
-    { name: "Videos", path: "/videos" },
+  const navItems = [
+    {
+      name: "Solutions",
+      path: "/solutions",
+      children: [
+        { name: "Pre-Sales Transformation", path: "/solutions/pre-sales" },
+        { name: "Sales Velocity Acceleration", path: "/solutions/sales-velocity" },
+        { name: "Customer Success & Post-Sales", path: "/solutions/customer-success" },
+        { name: "Digital & AI Enablement", path: "/solutions/digital-ai" },
+        { name: "Culture & Leadership", path: "/solutions/culture-transformation" },
+      ],
+    },
+    {
+      name: "Frameworks",
+      path: "/frameworks",
+      children: [
+        { name: "CX Maturity Framework", path: "/frameworks/cx-maturity" },
+        { name: "Expectation Management (EMM)", path: "/frameworks/expectation-management" },
+        { name: "HAND Culture Framework", path: "/frameworks/hand" },
+        { name: "Value Realization Map (VRM)", path: "/frameworks/value-realization-map" },
+        { name: "Customer Lifecycle Heatmap", path: "/frameworks/lifecycle-heatmap" },
+        { name: "VICTORY™ Framework", path: "/frameworks/victory" },
+        { name: "9Ps Advocacy Framework", path: "/frameworks/9ps" },
+        { name: "EAR™ Empathy Framework", path: "/frameworks/ear" },
+        { name: "PPP Playbook", path: "/frameworks/ppp" },
+        { name: "CX ROI Calculator", path: "/frameworks/cx-roi-calculator" },
+      ],
+    },
+    {
+      name: "Industries",
+      path: "/industries",
+      children: [
+        { name: "Retail", path: "/industries/retail" },
+        { name: "E-Commerce / D2C", path: "/industries/ecommerce" },
+        { name: "SaaS & B2B Tech", path: "/industries/saas" },
+        { name: "Insurance (Life & General)", path: "/industries/insurance" },
+        { name: "Banking & Financial Services", path: "/industries/bfsi" },
+        { name: "Manufacturing / Healthcare / EdTech", path: "/industries/manufacturing" },
+      ],
+    },
+    {
+      name: "Impact & Case Studies",
+      path: "/case-studies",
+      children: [],
+    },
+    {
+      name: "Resources",
+      path: "/resources",
+      children: [
+        { name: "Book", path: "/resources/book" },
+        { name: "The XT Podcast", path: "/resources/podcast" },
+        { name: "Assessments", path: "/assessments" },
+        { name: "Whitepapers", path: "/resources/whitepapers" },
+        { name: "Articles / Insights", path: "/resources/articles" },
+      ],
+    },
+    {
+      name: "About",
+      path: "/about",
+      children: [
+        { name: "Founder", path: "/about/founder" },
+        { name: "Clients & Partners (Coming Soon)", path: "/about/clients" },
+      ],
+    },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/98 backdrop-blur-xl border-b border-border/60 shadow-lg transition-all duration-300">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link to="/" onClick={() => handleNavClick('/')} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <img src={logo} alt="KretruTosh Consulting" className="h-12" />
+    <nav
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out border-b border-transparent",
+        scrolled
+          ? "bg-background/80 backdrop-blur-md shadow-sm border-border/40 py-2"
+          : "bg-transparent py-4"
+      )}
+    >
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between">
+          {/* Logo - Text Removed */}
+          <Link 
+            to="/" 
+            className="flex items-center gap-3 font-bold text-xl md:text-2xl tracking-tight text-primary transition-transform hover:scale-[1.02] z-50"
+          >
+            <img src={logo} alt="KretruTosh Consulting" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            
-            {/* --- FIX: Changed variant to "secondary" --- */}
-            <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/')}>
-              <Link to="/">Home</Link>
-            </Button>
-
+          <div className="hidden lg:flex items-center gap-1">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  {/* This component already has the correct style */}
-                  <NavigationMenuTrigger className="text-foreground hover:text-accent">
-                    Thought Leadership
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-48 gap-2 p-4 bg-popover">
-                      {thoughtLeadership.map((item) => (
-                        <li key={item.path}>
-                          <NavigationMenuLink asChild onClick={() => handleNavClick(item.path)}>
-                            <Link
-                              to={item.path}
-                              className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                            >
-                              {item.name}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
+                  <Link to="/">
+                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground")}>
+                      Home
+                    </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 
-                {/* --- FIX: Changed variant to "secondary" --- */}
-                <NavigationMenuItem>
-                  <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/services')}>
-                    <Link to="/services">Services</Link>
-                  </Button>
-                </NavigationMenuItem>
-                
-                {/* --- FIX: Changed variant to "secondary" --- */}
-                <NavigationMenuItem>
-                  <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/assessments')}>
-                    <Link to="/assessments">Assessments</Link>
-                  </Button>
-                </NavigationMenuItem>
-                
-                {/* --- FIX: Changed variant to "secondary" --- */}
-                <NavigationMenuItem>
-                  <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/case-studies')}>
-                    <Link to="/case-studies">Case Studies</Link>
-                  </Button>
-                </NavigationMenuItem>
+                {navItems.map((item) => (
+                  <NavigationMenuItem key={item.name}>
+                    {item.children && item.children.length > 0 ? (
+                      <>
+                        <NavigationMenuTrigger className="bg-transparent hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">{item.name}</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <ul className={cn(
+                            "grid gap-3 p-4",
+                            item.name === "Frameworks" ? "w-[400px] md:w-[500px] lg:w-[600px] md:grid-cols-2" :
+                            item.name === "About" ? "w-[200px] md:w-[300px]" :
+                            "w-[400px] md:w-[500px] md:grid-cols-2"
+                          )}>
+                            {item.children.map((child) => (
+                              <li key={child.name}>
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                    to={child.path}
+                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  >
+                                    <div className="text-sm font-medium leading-none">{child.name}</div>
+                                  </Link>
+                                </NavigationMenuLink>
+                              </li>
+                            ))}
+                          </ul>
+                        </NavigationMenuContent>
+                      </>
+                    ) : (
+                      <Link to={item.path}>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground")}>
+                          {item.name}
+                        </NavigationMenuLink>
+                      </Link>
+                    )}
+                  </NavigationMenuItem>
+                ))}
               </NavigationMenuList>
             </NavigationMenu>
 
-            {/* --- FIX: Changed variant to "secondary" --- */}
-            <Button asChild variant="secondary" className="font-semibold" onClick={() => handleNavClick('/about')}>
-              <Link to="/about">About</Link>
-            </Button>
-
-            {/* --- FIX: Added onClick={scrollToContact} --- */}
-            <Button onClick={scrollToContact} variant="premium" className="shadow-lg hover:shadow-xl">
-              Get Started
-            </Button>
+            <div className="ml-4">
+              <Button 
+                asChild 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                onClick={handleContactClick}
+              >
+                <a href="/#contact">Book Strategy Review</a>
+              </Button>
+            </div>
           </div>
 
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2">
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-2 text-primary hover:bg-primary/5 rounded-md transition-colors z-50"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 animate-fade-in">
-            <div className="flex flex-col gap-4">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border shadow-lg animate-fade-in-up max-h-[80vh] overflow-y-auto">
+            <div className="flex flex-col p-4 space-y-2">
               <Link
                 to="/"
-                onClick={() => { setIsOpen(false); handleNavClick('/'); }}
-                className="text-foreground hover:text-accent transition-colors font-medium py-2"
+                className="px-4 py-3 text-base font-medium rounded-md hover:bg-primary/5 text-muted-foreground hover:text-primary"
+                onClick={() => setIsOpen(false)}
               >
                 Home
               </Link>
               
-              <div>
-                <p className="text-sm font-semibold text-muted-foreground px-2 py-1">Thought Leadership</p>
-                {thoughtLeadership.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => { setIsOpen(false); handleNavClick(item.path); }}
-                    className="block text-foreground hover:text-accent transition-colors py-2 pl-4"
-                  >
+              {navItems.map((item) => (
+                <div key={item.name} className="space-y-1">
+                  <div className="px-4 py-2 text-sm font-semibold text-primary/80 uppercase tracking-wider">
                     {item.name}
-                  </Link>
-                ))}
-              </div>
-              <Link to="/services" onClick={() => { setIsOpen(false); handleNavClick('/services'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">Services</Link>
-              <Link to="/assessments" onClick={() => { setIsOpen(false); handleNavClick('/assessments'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">Assessments</Link>
-              <Link to="/case-studies" onClick={() => { setIsOpen(false); handleNavClick('/case-studies'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">Case Studies</Link>
-              <Link to="/about" onClick={() => { setIsOpen(false); handleNavClick('/about'); }} className="text-foreground hover:text-accent transition-colors font-medium py-2">About</Link>
+                  </div>
+                  <div className="pl-4 space-y-1 border-l-2 border-primary/10 ml-4">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.name}
+                        to={child.path}
+                        className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {child.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
 
-              <Button
-                onClick={() => { setIsOpen(false); scrollToContact(); }}
-                variant="premium"
-                className="w-full shadow-lg"
-              >
-                Get Started
-              </Button>
+              <div className="pt-4 mt-2 border-t border-border">
+                <Button className="w-full bg-primary text-primary-foreground" asChild onClick={handleContactClick}>
+                  <a href="/#contact">
+                    Book Strategy Review
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         )}

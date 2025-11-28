@@ -46,26 +46,31 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+    <section id="contact" className="py-24 bg-muted/30 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16 animate-fade-in space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">
             Get In Touch
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
             Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
         </div>
 
-        {/* --- MODIFICATION: Centered the form card --- */}
-        <Card className="border-border/50 shadow-lg animate-fade-in max-w-xl mx-auto">
-          <CardHeader>
-            <CardTitle className="text-2xl">Send us a message</CardTitle>
+        <Card className="border-border/50 shadow-elegant backdrop-blur-sm bg-card/80 max-w-xl mx-auto animate-scale-in">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-2xl text-primary">Send us a message</CardTitle>
             <CardDescription>Fill out the form below and we'll get back to you shortly</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
                 <Label htmlFor="name">Name *</Label>
                 <Input
                   id="name"
@@ -74,10 +79,10 @@ const ContactForm = () => {
                   onChange={handleChange}
                   required
                   placeholder="Your name"
-                  className="mt-1"
+                  className="bg-background/50 border-input/50 focus:border-primary focus:ring-primary/20 transition-all"
                 />
               </div>
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="email">Email *</Label>
                 <Input
                   id="email"
@@ -87,10 +92,10 @@ const ContactForm = () => {
                   onChange={handleChange}
                   required
                   placeholder="your@email.com"
-                  className="mt-1"
+                  className="bg-background/50 border-input/50 focus:border-primary focus:ring-primary/20 transition-all"
                 />
               </div>
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="subject">Subject *</Label>
                 <Input
                   id="subject"
@@ -99,10 +104,10 @@ const ContactForm = () => {
                   onChange={handleChange}
                   required
                   placeholder="How can we help?"
-                  className="mt-1"
+                  className="bg-background/50 border-input/50 focus:border-primary focus:ring-primary/20 transition-all"
                 />
               </div>
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="message">Message *</Label>
                 <Textarea
                   id="message"
@@ -111,10 +116,10 @@ const ContactForm = () => {
                   onChange={handleChange}
                   required
                   placeholder="Tell us more about your inquiry..."
-                  className="mt-1 min-h-[120px]"
+                  className="min-h-[120px] bg-background/50 border-input/50 focus:border-primary focus:ring-primary/20 transition-all"
                 />
               </div>
-              <Button type="submit" variant="hero" className="w-full" disabled={isSubmitting}>
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"}
                 <Send className="ml-2 h-4 w-4" />
               </Button>
